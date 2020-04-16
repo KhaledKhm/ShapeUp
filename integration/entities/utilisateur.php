@@ -1,38 +1,42 @@
 <?PHP
 class utilisateur{
-	private $cin;
+	private $cinUtilisateur;
 	private $nom;
 	private $prenom;
 	private $password;
 	private $sexe;
 	private $dateNaiss;
 	private $adresse;
-	private $numtel;
+	private $numTel;
 	private $email;
 	private $dateInscription;
-	private $role;
-	function __construct($cin,$nom,$prenom,$password,$sexe,$dateNaiss,$adresse,$numtel,$email,$dateInscription,$role){
-		$this->cin=$cin;
+	private $role; 
+
+	function __construct($cinUtilisateur, $nom, $prenom, $password, $sexe, $dateNaiss, $adresse, $numTel, $email, $dateInscription, $role){
+		$this->cinUtilisateur=$cinUtilisateur;
 		$this->nom=$nom;
 		$this->prenom=$prenom;
 		$this->password=$password;
 		$this->sexe=$sexe;
 		$this->dateNaiss=$dateNaiss;
 		$this->adresse=$adresse;
-		$this->numtel=$numtel;
+		$this->numTel=$numTel;
 		$this->email=$email;
 		$this->dateInscription=$dateInscription;
 		$this->role=$role;
 	}
 	
-	function getCin(){
-		return $this->cin;
+	function getCinUtilisateur(){
+		return $this->cinUtilisateur;
 	}
 	function getNom(){
 		return $this->nom;
 	}
 	function getPrenom(){
 		return $this->prenom;
+	}
+	function getPassword(){
+		return $this->password;
 	}
 	function getSexe(){
 		return $this->sexe;
@@ -43,8 +47,8 @@ class utilisateur{
 	function getAdresse(){
 		return $this->adresse;
 	}
-	function getNumtel(){
-		return $this->numtel;
+	function getNumTel(){
+		return $this->numTel;
 	}
 	function getEmail(){
 		return $this->email;
@@ -56,8 +60,9 @@ class utilisateur{
 		return $this->role;
 	}
 
-	function setCin($cin){	
-		$this->cin=$cin;
+
+	function setCinUtilisateur($cinUtilisateur){	
+		$this->cinUtilisateur=$cinUtilisateur;
 	}
 	function setNom($nom){
 		$this->nom=$nom;
@@ -65,7 +70,7 @@ class utilisateur{
 	function setPrenom($prenom){
 		$this->prenom=$prenom;
 	}
-	function setSexe($password){
+	function setPassword($password){
 		$this->password=$password;
 	}
 	function setSexe($sexe){
@@ -77,8 +82,8 @@ class utilisateur{
 	function setAdresse($adresse){
 		$this->adresse=$adresse;
 	}
-	function setNumtel($prenom){
-		$this->numtel=$numtel;
+	function setNumTel($numTel){
+		$this->numTel=$numTel;
 	}
 	function setEmail($email){
 		$this->email=$email;
