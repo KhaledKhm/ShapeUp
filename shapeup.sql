@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 15, 2020 at 08:55 PM
+-- Generation Time: Apr 16, 2020 at 12:35 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -233,9 +233,10 @@ CREATE TABLE IF NOT EXISTS `reclamation` (
 
 DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `cin` int(8) NOT NULL,
+  `cinUtilisateur` int(8) NOT NULL,
   `nom` varchar(20) NOT NULL,
   `prenom` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `sexe` varchar(20) NOT NULL,
   `role` int(11) NOT NULL,
   `dateNaiss` date NOT NULL,
@@ -243,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `numTel` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `dateInscription` date NOT NULL,
-  PRIMARY KEY (`cin`)
+  PRIMARY KEY (`cinUtilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -254,26 +255,26 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 -- Constraints for table `appreciation`
 --
 ALTER TABLE `appreciation`
-  ADD CONSTRAINT `fk_cinclient_appreciation` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cin`);
+  ADD CONSTRAINT `fk_cinclient_appreciation` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cinUtilisateur`);
 
 --
 -- Constraints for table `bandachat`
 --
 ALTER TABLE `bandachat`
-  ADD CONSTRAINT `fk_cinclient_bandachat` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cin`);
+  ADD CONSTRAINT `fk_cinclient_bandachat` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cinUtilisateur`);
 
 --
 -- Constraints for table `commande`
 --
 ALTER TABLE `commande`
-  ADD CONSTRAINT `fk_cinclient_commande` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cin`),
+  ADD CONSTRAINT `fk_cinclient_commande` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cinUtilisateur`),
   ADD CONSTRAINT `fk_idproduit_commande` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`code`);
 
 --
 -- Constraints for table `evenement`
 --
 ALTER TABLE `evenement`
-  ADD CONSTRAINT `fk_cinClient_evenement` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cin`),
+  ADD CONSTRAINT `fk_cinClient_evenement` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cinUtilisateur`),
   ADD CONSTRAINT `fk_idcategorieevent_evenement` FOREIGN KEY (`idCategorieEvent`) REFERENCES `categorieevent` (`idCategorieEvent`),
   ADD CONSTRAINT `fk_idpromotion_evenement` FOREIGN KEY (`idPromotion`) REFERENCES `promotion` (`idPromotion`);
 
@@ -281,13 +282,13 @@ ALTER TABLE `evenement`
 -- Constraints for table `facture`
 --
 ALTER TABLE `facture`
-  ADD CONSTRAINT `fk_cinclient_facture` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cin`);
+  ADD CONSTRAINT `fk_cinclient_facture` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cinUtilisateur`);
 
 --
 -- Constraints for table `livraison`
 --
 ALTER TABLE `livraison`
-  ADD CONSTRAINT `fk_cinclient_livraison` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cin`),
+  ADD CONSTRAINT `fk_cinclient_livraison` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cinUtilisateur`),
   ADD CONSTRAINT `fk_cinlivreur_livraison` FOREIGN KEY (`cinLivreur`) REFERENCES `livreur` (`CINLivreur`);
 
 --
@@ -306,7 +307,7 @@ ALTER TABLE `promotion`
 -- Constraints for table `reclamation`
 --
 ALTER TABLE `reclamation`
-  ADD CONSTRAINT `fk_cinclient_reclamation` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cin`);
+  ADD CONSTRAINT `fk_cinclient_reclamation` FOREIGN KEY (`cinUtilisateur`) REFERENCES `utilisateur` (`cinUtilisateur`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
