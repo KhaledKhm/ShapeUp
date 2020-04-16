@@ -3,6 +3,7 @@ class client{
 	private $cin;
 	private $nom;
 	private $prenom;
+	private $password;
 	private $sexe;
 	private $dateNaiss;
 	private $adresse;
@@ -10,10 +11,11 @@ class client{
 	private $email;
 	private $dateInscription;
 	private $role;
-	function __construct($cin,$nom,$prenom,$sexe,$dateNaiss,$adresse,$numtel,$email,$dateInscription,$role){
+	function __construct($cin,$nom,$prenom,$password,$sexe,$dateNaiss,$adresse,$numtel,$email,$dateInscription,$role){
 		$this->cin=$cin;
 		$this->nom=$nom;
 		$this->prenom=$prenom;
+		$this->password=$password;
 		$this->sexe=$sexe;
 		$this->dateNaiss=$dateNaiss;
 		$this->adresse=$adresse;
@@ -62,6 +64,9 @@ class client{
 	}
 	function setPrenom($prenom){
 		$this->prenom=$prenom;
+	}
+	function setSexe($password){
+		$this->password=$password;
 	}
 	function setSexe($sexe){
 		$this->sexe=$sexe;
