@@ -1,5 +1,5 @@
 <?PHP
-class client{
+class utilisateur{
 	private $cin;
 	private $nom;
 	private $prenom;
