@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 16, 2020 at 12:35 PM
+-- Generation Time: Apr 17, 2020 at 10:31 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -110,6 +110,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
 DROP TABLE IF EXISTS `evenement`;
 CREATE TABLE IF NOT EXISTS `evenement` (
   `idEvent` int(11) NOT NULL AUTO_INCREMENT,
+  `libelleEvent` varchar(100) NOT NULL,
   `descriptionEvent` varchar(100) NOT NULL,
   `nbParticipant` int(11) NOT NULL,
   `adresseEvent` varchar(100) NOT NULL,
