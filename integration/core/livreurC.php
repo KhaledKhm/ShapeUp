@@ -39,11 +39,11 @@ function afficherlivreur ($livreur){
             die('Erreur: '.$e->getMessage());
         }	
 	}
-	function supprimerlivreur($cin){
-		$sql="DELETE FROM livreur where cinLivreur= :cin";
+	function supprimerlivreur($cinLivreur){
+		$sql="DELETE FROM livreur where cinLivreur= :cinLivreur";
 		$db = config::getConnexion();
         $req=$db->prepare($sql);
-		$req->bindValue(':cinLivreur',$cin);
+		$req->bindValue(':cinLivreur',$cinLivreur);
 		try{
             $req->execute();
            // header('Location: index.php');
@@ -60,10 +60,10 @@ function afficherlivreur ($livreur){
 try{		
         $req=$db->prepare($sql);
 		$cinn=$livreur->getCinLivreur();
-        $nom=$livreur->getNomLivreur();
-        $prenom=$livreur->getPrenomLivreur();
+        $nomLivreur=$livreur->getNomLivreur();
+        $prenomLivreur=$livreur->getPrenomLivreur();
 		$datas = array(':cinn'=>$cinn, ':cinLivreur'=>$cinLivreur, ':nomLivreur'=>$nomLivreur,':prenomLivreur'=>$prenomLivreur);
-		$req->bindValue(':cinn',$cinn);
+		//$req->bindValue(':cinn',$cinn);
 		$req->bindValue(':cinLivreur',$cinLivreur);
 		$req->bindValue(':nomLivreur',$nomLivreur);
 		$req->bindValue(':prenomLivreur',$prenomLivreur);	
@@ -79,6 +79,20 @@ try{
         }
 		
 	}
-}
+
+
+	function recupererlivreur($cinLivreur){
+		$sql="SELECT * from livreur where cinLivreur=$cinLivreur";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+	}
+
 
 ?>
