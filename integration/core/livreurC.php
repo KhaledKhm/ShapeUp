@@ -12,9 +12,9 @@ function afficherlivreur ($livreur){
 		try{
         $req=$db->prepare($sql);
 		
-        $cin=$livreur->getCin();
-        $nom=$livreur->getNom();
-        $prenom=$livreur->getPrenom();
+        $cin=$livreur->getCinLivreur();
+        $nom=$livreur->getNomLivreur();
+        $prenom=$livreur->getPrenomLivreur();
 		$req->bindValue(':cin',$cin);
 		$req->bindValue(':nom',$nom);
 		$req->bindValue(':prenom',$prenom);
