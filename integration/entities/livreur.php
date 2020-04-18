@@ -1,34 +1,38 @@
 <?PHP
 class livreur{
-	private $cinLivreur;
-	private $nomLivreur;
-	private $prenomLivreur;
-	function __construct($cinLivreur,$nomLivreur,$prenomLivreur){
-		$this->cinLivreur=$cinLivreur;
-		$this->nomLivreur=$nomLivreur;
-		$this->prenomLivreur=$prenomLivreur;
+	private $cin;
+	private $nom;
+	private $prenom;
+	private $secteur;
+	function __construct($cin,$nom,$prenom,$secteur){
+		$this->cin=$cin;
+		$this->nom=$nom;
+		$this->prenom=$prenom;
+		$this->secteur=$secteur;
 	}
 	
-	function getCinLivreur(){
-		return $this->cinLivreur;
+	function getCin(){
+		return $this->cin;
 	}
-	function getNomLivreur(){
-		return $this->nomLivreur;
+	function getNom(){
+		return $this->nom;
 	}
-	function getPrenomLivreur(){
-		return $this->prenomLivreur;
+	function getPrenom(){
+		return $this->prenom;
+	}
+	function getSecteur(){
+		return $this->secteur;
 	}
 
-	function setCinLivreur($cinLivreur){	
-		$this->cinLivreur=$cinLivreur;
+	function setNom($nom){
+		$this->nom=$nom;
 	}
-	function setNomLivreur($nomLivreur){
-		$this->nomLivreur=$nomLivreur;
+	function setPrenom($prenom){
+		$this->prenom;
 	}
-	function setPrenomLivreur($prenomLivreur){
-		$this->prenomLivreur=$prenomLivreur;
+	function setSecteur($secteur){
+		$this->secteur=$secteur;
 	}
-	
 	
 }
 
