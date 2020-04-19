@@ -10,6 +10,8 @@ class commande extends {
 	function __construct($idCommande,$statusCommande){
 		$this->idCommande=$idCommande;
 		$this->statusCommande=$statusCommande;
+		$this->quantite=$quantite
+		$this->dateCommande=$DateCommande
 	function getidCommande(){
 		return $this->idCommande;
 	}
