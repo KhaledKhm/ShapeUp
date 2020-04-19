@@ -74,7 +74,7 @@
                         </li>
 
                           <li class="nav-item active">
-                            <a class="nav-link" href="backlivreur.html">
+                            <a class="nav-link" href="backlivreur.php">
                                 <i class="fas fa-shopping-cart"></i>
                                 Livreur
                             </a>
@@ -154,7 +154,7 @@ if (isset($_GET['cinLivreur'])){
 		$nomLivreur=$row['nomLivreur'];
 		$prenomLivreur=$row['prenomLivreur'];
 ?>
-                   <form action="backlivreur.php" class="tm-edit-product-form" method="POST">
+                   <form action="" class="tm-edit-product-form" method="POST">
                   <div class="form-group mb-3">
                     <label
                       for="name"
@@ -163,7 +163,7 @@ if (isset($_GET['cinLivreur'])){
                     <input
                       id="name"
                       name="cinLivreur"
-                      type="text"
+                      type="number"
                       class="form-control validate"
                       required
                       
@@ -200,21 +200,24 @@ if (isset($_GET['cinLivreur'])){
               
          
               <div class="col-12">
-               <!-- <button type="submit" name="modifier" class="btn btn-primary btn-block text-uppercase">Modifier le livreur</button>-->
-                <input type="submit" name="modifier" value="modifier">
+                 <button type="submit" name="modifier" class="btn btn-primary btn-block text-uppercase">Modifier le livreur</button>
+              <!-- <input type="submit" name="modifier" value="modifier">-->
                 <input type="hidden" name="cin_ini" value="<?PHP echo $_GET['cinLivreur'];?>">
+
               </div>
-            </form>
-            <?PHP
-	}
+              <?PHP
+  }
 }
 if (isset($_POST['modifier'])){
-	$livreur=new livreur($_POST['cinLivreur'],$_POST['nomLivreur'],$_POST['prenomLivreur']);
-	$livreurC->modifierlivreur($livreur,$_POST['cin_ini']);
-	echo $_POST['cin_ini'];
-	//header('Location: backlivreur.php');
+  $livreur=new livreur($_POST['cinLivreur'],$_POST['nomLivreur'],$_POST['prenomLivreur']);
+  $livreurC->modifierlivreur($livreur,$_POST['cin_ini']);
+ // echo $_POST['cin_ini'];
+//header('Location: backlivreur.php');
+}else{
+  echo "vérifier les champs";
 }
 ?>
+            </form>
             </div>
           </div>
         </div>
