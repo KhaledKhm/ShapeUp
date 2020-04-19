@@ -1,13 +1,13 @@
 <?PHP
 class livraison{
 	private $idLivraison;
-	private $destinaion;
+	private $destination;
 	private $cinClient;
 	private $cinLivreur;
 	private $idCommande;
-	function __construct($idLivraison,$destinaion,$cinClient,$cinLivreur,$idCommande){
+	function __construct($idLivraison,$destination,$cinClient,$cinLivreur,$idCommande){
 		$this->idLivraison=$idLivraison;
-		$this->destinaion=$destinaion;
+		$this->destination=$destination;
 		$this->cinClient=$cinClient;
 		$this->cinLivreur=$cinLivreur;
 		$this->idCommande=$idCommande;
@@ -17,7 +17,7 @@ class livraison{
 		return $this->idLivraison;
 	}
 	function getDestination(){
-		return $this->destinaion;
+		return $this->destination;
 	}
 	function getCinClient(){
 		return $this->cinClient;
@@ -29,8 +29,8 @@ class livraison{
 		return $this->idCommande;
 	}
 
-	function setDestination($destinaion){
-		$this->destinaion=$destinaion;
+	function setDestination($destination){
+		$this->destination=$destination;
 	}
 	function setCinClient($cinClient){
 		$this->cinClient=$cinClient;
