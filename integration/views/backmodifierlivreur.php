@@ -1,3 +1,6 @@
+<<?php 
+ob_start();
+ ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -212,7 +215,8 @@ if (isset($_POST['modifier'])){
   $livreur=new livreur($_POST['cinLivreur'],$_POST['nomLivreur'],$_POST['prenomLivreur']);
   $livreurC->modifierlivreur($livreur,$_POST['cin_ini']);
  // echo $_POST['cin_ini'];
-//header('Location: backlivreur.php');
+header('Location: backlivreur.php');
+ob_enf_fluch();
 }else{
   echo "vérifier les champs";
 }
