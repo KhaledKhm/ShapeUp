@@ -10,10 +10,11 @@ class facture extends {
 
 	function __construct($idCommande,$statusCommande){
 		$this->numFacture=$numFacture;
-		$this->=$prixFacture;
-		$this->=$DateFacture;
-		$this->=$idCommande;
-		$this->=$cinutilisateur;
+		$this->prixFacture=$prixFacture;
+		$this->DateFacture=$DateFacture;
+		$this->idCommande=$idCommande;
+		$this->cinutilisateur=$cinutilisateur;
+	}
 	function getNumFacture (){
 		return $this->numFacture;
 	}
@@ -31,11 +32,11 @@ class facture extends {
 	}
 	
 
-	function setnumFacture($idCommande){
+	function setnumFacture($numFacture){
 		 $this->numFacture=$numFacture;
-	function setPrixFacture($idCommande){
+	function setPrixFacture($prixFacture){
 		 $this->prixFacture=$prixFacture;
-	function setdateFacture($idCommande){
+	function setdateFacture($DateFacture){
 		 $this->DateFacture=$DateFacture;
 	function setidcommande($idCommande){
 		 $this->idCommande=$idCommande;
