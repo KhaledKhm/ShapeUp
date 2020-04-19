@@ -1,6 +1,8 @@
 
 <?PHP
 class commande extends {
+	
+	
 	private $idCommande
 	private $statusCommande
 	private $quantite
@@ -11,34 +13,36 @@ class commande extends {
 		$this->idCommande=$idCommande;
 		$this->statusCommande=$statusCommande;
 		$this->quantite=$quantite
-		$this->dateCommande=$DateCommande
+		$this->dateCommande=$dateCommande
+	}
+	
 	function getidCommande(){
 		return $this->idCommande;
 	}
 	function getstatusCommande(){
 		return $this->statusCommande;
 	}
-	
 	function getquantite(){
 		return $this->quantite;
 	}
 	function getdate(){
-		return $this->date;
+		return $this->dateCommande;
 	}
 	
 
+	
+	
 	function setidEvent($idCommande){
 		 $this->idCommande=$idCommande;
 	}
 	function setlibelleEvent($statusCommande){
 		$this->statusCommande=$statusCommande;
 	}
-	
 	function setlibelleEvent($quantite){
 		$this->quantite=$quantite;
 	}
 	function setlibelleEvent($date){
-		$this->date=$date;
+		$this->dateCommande=$dateCommande;
 	}
 	
 
