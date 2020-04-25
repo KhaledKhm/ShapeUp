@@ -25,6 +25,7 @@ function afficherutilisateur ($utilisateur){
         $prenom=$utilisateur->getPrenom();
         $password=$utilisateur->getPassword();
 		$sexe=$utilisateur->getSexe();
+		$rolen=1;
 		$role=$utilisateur->getRole();
         $dateNaiss=$utilisateur->getDateNaiss();
         $adresse=$utilisateur->getAdresse();
@@ -51,7 +52,7 @@ function afficherutilisateur ($utilisateur){
 		
 	}
 	
-	function afficherutilisateur(){
+	function afficherutilisateurs(){
 		//$sql="SElECT * From utilisateur e inner join formationphp.utilisateur a on e.cinUtilisateur= a.cinUtilisateur";
 		$sql="SElECT * From utilisateur";
 		$db = config::getConnexion();
