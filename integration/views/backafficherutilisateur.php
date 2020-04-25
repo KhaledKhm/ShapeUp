@@ -183,13 +183,13 @@ $listeUtilisateur=$utilisateur1C->afficherutilisateurs();
             <td><?PHP echo $row['email']; ?></td>
             <td><?PHP echo $row['dateInscription']; ?></td>
             <td><form method="POST" action="">
-                    <a  name="supprimer" class="tm-product-delete-link" href="backsupprimerlivraison.php?cinUtilisateur=<?PHP echo $row['cinUtilisateur']; ?>">
+                    <a  name="supprimer" class="tm-product-delete-link" href="backsupprimerutilisateur.php?cinUtilisateur=<?PHP echo $row['cinUtilisateur']; ?>">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
-                    <input href="backsupprimerlivreur.php?cinUtilisateur=<?PHP echo $row['cinUtilisateur']; ?>" type="hidden" value="<?PHP echo $row['cinUtilisateur']; ?>" name="cinUtilisateur">
+                    <input href="backsupprimerutilisateur.php?cinUtilisateur=<?PHP echo $row['cinUtilisateur']; ?>" type="hidden" value="<?PHP echo $row['cinUtilisateur']; ?>" name="cinUtilisateur">
                 </form>
             </td>
-            <td><a href="backmodifierlivraison.php?cinUtilisateur=<?PHP echo $row['cinUtilisateur']; ?>">
+            <td><a href="backmodifierutilisateur.php?cinUtilisateur=<?PHP echo $row['cinUtilisateur']; ?>">
                     Modifier</a></td>
         </tr>
         <?PHP
