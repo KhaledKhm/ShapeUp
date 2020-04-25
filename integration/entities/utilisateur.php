@@ -5,25 +5,25 @@ class utilisateur{
 	private $prenom;
 	private $password;
 	private $sexe;
+	private $role;
 	private $dateNaiss;
 	private $adresse;
 	private $numTel;
 	private $email;
 	private $dateInscription;
-	private $role; 
 
-	function __construct($cinUtilisateur, $nom, $prenom, $password, $sexe, $dateNaiss, $adresse, $numTel, $email, $dateInscription, $role){
+	function __construct($cinUtilisateur, $nom, $prenom, $password, $sexe,$role, $dateNaiss, $adresse, $numTel, $email){
 		$this->cinUtilisateur=$cinUtilisateur;
 		$this->nom=$nom;
 		$this->prenom=$prenom;
-		$this->password=$password;
+		$this->password=md5($password);
 		$this->sexe=$sexe;
+		$this->role=$role;
 		$this->dateNaiss=$dateNaiss;
 		$this->adresse=$adresse;
 		$this->numTel=$numTel;
 		$this->email=$email;
-		$this->dateInscription=$dateInscription;
-		$this->role=$role;
+		$this->dateInscription=date("y-m-d");
 	}
 	
 	function getCinUtilisateur(){
@@ -36,7 +36,7 @@ class utilisateur{
 		return $this->prenom;
 	}
 	function getPassword(){
-		return $this->password;
+		return md5($this->password);
 	}
 	function getSexe(){
 		return $this->sexe;
@@ -56,6 +56,7 @@ class utilisateur{
 	function getDateInscription(){
 		return $this->dateInscription;
 	}
+	
 	function getRole(){
 		return $this->role;
 	}
@@ -96,6 +97,6 @@ class utilisateur{
 	}
 	
 	
-}
+	}
 
 ?>
