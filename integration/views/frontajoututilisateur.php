@@ -80,9 +80,7 @@ ob_start();
                       
                     />
                   </div>
-                  <?PHP
-$rolen=0;
-?>
+  
                    <div class="form-group mb-3">
                     <label
                       for="name"
@@ -113,7 +111,9 @@ $rolen=0;
                       
                     />
                   </div>
-                    
+<?PHP
+$rolen=0; //pour l'ajout de role en front (pour avoir role admin)
+?>                   
                       <div class="form-group mb-3">
                   
                     <input
