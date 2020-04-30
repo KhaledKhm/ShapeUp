@@ -78,7 +78,7 @@ function afficherutilisateur ($utilisateur){
         }
 	}
 	function modifierutilisateur($utilisateur,$cinUtilisateur){
-		$sql="UPDATE utilisateur SET cinUtilisateur=:cinUtilisateurn, nom=:nom,prenom=:prenom,password=:password,sexe=:sexe,role=:role,dateNaiss=:dateNaiss,adresse=:adresse,numTel=:numTel,email=:email,dateInscription=:dateInscription WHERE cinUtilisateur=:cinUtilisateur";
+		$sql="UPDATE utilisateur SET cinUtilisateur=:cinUtilisateurn, nom=:nom,prenom=:prenom,password=:password,sexe=:sexe,role=:role,dateNaiss=:dateNaiss,adresse=:adresse,numTel=:numTel,email=:email WHERE cinUtilisateur=:cinUtilisateur";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
@@ -94,8 +94,8 @@ try{
         $adresse=$utilisateur->getAdresse();
         $numTel=$utilisateur->getNumTel();
 		$email=$utilisateur->getEmail();
-		$dateInscription=$utilisateur->getDateInscription();
-		$datas = array(':cinUtilisateurn'=>$cinUtilisateurn, ':cinUtilisateur'=>$cinUtilisateur, ':nom'=>$nom,':prenom'=>$prenom,':password'=>$password,':sexe'=>$sexe, ':role'=>$role,':dateNaiss'=>$dateNaiss,':adresse'=>$adresse,':numTel'=>$numTel,':email'=>$email,':dateInscription'=>$dateInscription);
+	//	$dateInscription=$utilisateur->getDateInscription();
+		$datas = array(':cinUtilisateurn'=>$cinUtilisateurn, ':cinUtilisateur'=>$cinUtilisateur, ':nom'=>$nom,':prenom'=>$prenom,':password'=>$password,':sexe'=>$sexe, ':role'=>$role,':dateNaiss'=>$dateNaiss,':adresse'=>$adresse,':numTel'=>$numTel,':email'=>$email);
 		$req->bindValue(':cinUtilisateurn',$cinUtilisateurn);
 		$req->bindValue(':cinUtilisateur',$cinUtilisateur);
 		$req->bindValue(':nom',$nom);
@@ -107,7 +107,7 @@ try{
 		$req->bindValue(':adresse',$adresse);
 		$req->bindValue(':numTel',$numTel);
         $req->bindValue(':email',$email);	
-        $req->bindValue(':dateInscription',$dateInscription);			
+    //    $req->bindValue(':dateInscription',$dateInscription);			
 		
             $s=$req->execute();
 			
