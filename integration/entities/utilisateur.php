@@ -1,4 +1,5 @@
 <?PHP
+include_once "../config.php";
 class utilisateur{
 	private $cinUtilisateur;
 	private $nom;
@@ -11,12 +12,13 @@ class utilisateur{
 	private $numTel;
 	private $email;
 	private $dateInscription;
+	public $conn;
 
-	function __construct($cinUtilisateur, $nom, $prenom, $password, $sexe,$role, $dateNaiss, $adresse, $numTel, $email){
+	function __construct($cinUtilisateur, $nom, $prenom, $password, $sexe,$role, $dateNaiss, $adresse, $numTel, $email,$conn){
 		$this->cinUtilisateur=$cinUtilisateur;
 		$this->nom=$nom;
 		$this->prenom=$prenom;
-		$this->password=md5($password);
+		$this->password=$password;
 		$this->sexe=$sexe;
 		$this->role=$role;
 		$this->dateNaiss=$dateNaiss;
@@ -24,6 +26,8 @@ class utilisateur{
 		$this->numTel=$numTel;
 		$this->email=$email;
 		$this->dateInscription=date("y-m-d");
+		$c=new config();
+		$this->conn=$c->getConnexion();
 	}
 	
 	function getCinUtilisateur(){
@@ -95,8 +99,16 @@ class utilisateur{
 	function setRole($role){
 		$this->role=$role;
 	}
-	
-	
+	public function Logedin($conn,$cinUtilisateur,$password)
+	{	$password=md5(md5($password));
+		//echo "$password";
+		$req="select * from utilisateur where cinUtilisateur='$cinUtilisateur' && password='$password'";
+		$rep=$conn->query($req);
+		return $rep->fetchAll();
 	}
+
+	
+	
+}
 
 ?>
