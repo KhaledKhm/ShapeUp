@@ -1,5 +1,5 @@
 <?PHP
-include "../config.php";
+include_once "../config.php";
 class utilisateurC {
 function afficherutilisateur ($utilisateur){
 		echo "cinUtilisateur: ".$utilisateur->getCinUtilisateur()."<br>";
@@ -25,7 +25,7 @@ function afficherutilisateur ($utilisateur){
         $prenom=$utilisateur->getPrenom();
         $password=$utilisateur->getPassword();
 		$sexe=$utilisateur->getSexe();
-		$rolen=1;
+	//	$rolen=1;
 		$role=$utilisateur->getRole();
         $dateNaiss=$utilisateur->getDateNaiss();
         $adresse=$utilisateur->getAdresse();
