@@ -12,22 +12,22 @@ class utilisateur{
 	private $numTel;
 	private $email;
 	private $dateInscription;
-	public $conn;
+	//public $conn;
 
-	function __construct($cinUtilisateur, $nom, $prenom, $password, $sexe,$role, $dateNaiss, $adresse, $numTel, $email,$conn){
+	function __construct($cinUtilisateur, $nom, $prenom, $password, $sexe, $dateNaiss, $adresse, $numTel, $email){
 		$this->cinUtilisateur=$cinUtilisateur;
 		$this->nom=$nom;
 		$this->prenom=$prenom;
 		$this->password=$password;
 		$this->sexe=$sexe;
-		$this->role=$role;
+		//$this->role=$role;
 		$this->dateNaiss=$dateNaiss;
 		$this->adresse=$adresse;
 		$this->numTel=$numTel;
 		$this->email=$email;
 		$this->dateInscription=date("y-m-d");
-		$c=new config();
-		$this->conn=$c->getConnexion();
+	/*	$c=new config();
+		$this->conn=$c->getConnexion();*/
 	}
 	
 	function getCinUtilisateur(){
@@ -40,7 +40,7 @@ class utilisateur{
 		return $this->prenom;
 	}
 	function getPassword(){
-		return md5($this->password);
+		return $this->password;
 	}
 	function getSexe(){
 		return $this->sexe;
@@ -99,14 +99,14 @@ class utilisateur{
 	function setRole($role){
 		$this->role=$role;
 	}
-	public function Logedin($conn,$cinUtilisateur,$password)
+	/*public function Logedin($conn,$cinUtilisateur,$password)
 	{	$password=md5(md5($password));
 		//echo "$password";
 		$req="select * from utilisateur where cinUtilisateur='$cinUtilisateur' && password='$password'";
 		$rep=$conn->query($req);
 		return $rep->fetchAll();
 	}
-
+*/
 	
 	
 }
