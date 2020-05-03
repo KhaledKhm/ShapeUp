@@ -1,3 +1,14 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION['c'])){
+        header('Location: auth.html');
+    }
+    else {
+        echo 'cin  ' .$_SESSION['c'];
+        echo 'role  ' .$_SESSION['r'];
+    }
+?>
 <?PHP
 include "../core/utilisateurC.php";
 //include "../core/livraisonC.php";
@@ -78,7 +89,7 @@ $listeUtilisateur=$utilisateur1C->afficherutilisateurs();
                         </li>
 
                           <li class="nav-item">
-                            <a class="nav-link" href="backlivreur.html">
+                            <a class="nav-link" href="backlivreur.php">
                                 <i class="fas fa-shopping-cart"></i>
                                 Livreur
                             </a>

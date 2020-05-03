@@ -1,5 +1,5 @@
 <?php 
- session_start(); 
+ /*session_start(); 
 
   if (!isset($_SESSION['l'])) {
     $_SESSION['msg'] = "You must log in first";
@@ -10,7 +10,7 @@
     session_destroy();
     unset($_SESSION['l']);
     header("location: auth.html");
-  }
+  }*/
 
 ob_start();
  ?>
@@ -93,9 +93,7 @@ ob_start();
                       
                     />
                   </div>
-                  <?PHP
-$rolen=0;
-?>
+
                    <div class="form-group mb-3">
                     <label
                       for="name"
@@ -127,7 +125,7 @@ $rolen=0;
                     />
                   </div>
                     
-                      <div class="form-group mb-3">
+                <!--      <div class="form-group mb-3">
                   
                     <input
                       id="name"
@@ -137,7 +135,7 @@ $rolen=0;
                       readonly
                       value="<?PHP echo $rolen ?>"
                     />
-                  </div>
+                  </div>-->
                    <div class="form-group mb-3">
                     <label
                       for="name"
@@ -207,8 +205,19 @@ include "../core/utilisateurC.php";
 
 
 if (isset($_POST['inscrire'])){
-$utilisateur1=new utilisateur($_POST['cinUtilisateur'],$_POST['nom'],$_POST['prenom'],md5($_POST['password']),$_POST['sexe'],$_POST['role'],$_POST['dateNaiss'],$_POST['adresse'],$_POST['numTel'],$_POST['email'],NULL);
-var_dump('cinUtilisateur');
+  $cinUtilisateur=$_POST['cinUtilisateur'];
+    $nom=$_POST['nom'];
+    $prenom=$_POST['prenom'];
+    $password=$_POST['password'];
+    $sexe=$_POST['sexe'];
+   // $role=$_POST['role'];
+    $dateNaiss=$_POST['dateNaiss'];
+    $adresse=$_POST['adresse'];
+    $numTel=$_POST['numTel'];
+    $email=$_POST['email'];
+$utilisateur1=new utilisateur($cinUtilisateur,$nom,$prenom,md5($password),$sexe,$dateNaiss,$adresse,$numTel,$email);
+$utilisateur1->setRole(0);
+//var_dump('cinUtilisateur');
 //Partie2
 /*
 var_dump($livreur1);

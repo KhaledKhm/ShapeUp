@@ -1,3 +1,14 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION['c'])){
+        header('Location: auth.html');
+    }
+    else {
+        echo 'cin  ' .$_SESSION['c'];
+        echo 'role  ' .$_SESSION['r'];
+    }
+?>
 <?PHP
 include "../core/livreurC.php";
 //include "../core/livraisonC.php";
@@ -80,7 +91,7 @@ $listeLivraison=$livraison1C->afficherlivraisons();
                         </li>
 
                           <li class="nav-item active">
-                            <a class="nav-link" href="backlivreur.html">
+                            <a class="nav-link" href="backlivreur.php">
                                 <i class="fas fa-shopping-cart"></i>
                                 Livreur
                             </a>
@@ -130,7 +141,7 @@ $listeLivraison=$livraison1C->afficherlivraisons();
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link d-block" href="backlogin.html">
+                            <a class="nav-link d-block" href="logout.php">
                                 Admin, <b>Logout</b>
                             </a>
                         </li>
@@ -142,6 +153,7 @@ $listeLivraison=$livraison1C->afficherlivraisons();
       <div class="row tm-content-row">
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
+            <h2 class="tm-block-title">Liste des Livraisons</h2>
             <div class="tm-product-table-container">
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
@@ -195,7 +207,7 @@ $listeLivraison=$livraison1C->afficherlivraisons();
         </div>
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
-            <h2 class="tm-block-title">Product Categories</h2>
+            <h2 class="tm-block-title">Liste des Livreurs</h2>
             <div class="tm-product-table-container">
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
@@ -235,7 +247,7 @@ $listeLivraison=$livraison1C->afficherlivraisons();
               </table>
             </div>
              <a
-              href="backajoutlivreur.html"
+              href="backajoutlivreurform.php"
               class="btn btn-primary btn-block text-uppercase mb-3">Ajouter Livreur</a>
             <!-- table container -->
            <!-- <button class="btn btn-primary btn-block text-uppercase mb-3">

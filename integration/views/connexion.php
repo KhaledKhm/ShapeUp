@@ -19,15 +19,55 @@ include_once "../config.php";
 	$rep=$conn->query($req);
 	$res=$rep->fetchAll();
 	*/
-$c=new config();
-$conn=$c->getConnexion();
-$user=new utilisateur($_POST['cinUtilisateur'],NULL,NULL,md5(md5($_POST['password'])),NULL,NULL,NULL,NULL,NULL,NULL,$conn);
-$u=$user->Logedin($conn,$_POST['cinUtilisateur'],$_POST['password']);
+if(!isset($_POST['Valider'])){
+$vide=false;
+if (!empty($_POST['cinUtilisateur']) && !empty($_POST['password'])){
+$cinUtilisateur=$_POST['cinUtilisateur'];
+$password=$_POST['password'];
+
+//$c=new config();
+//$conn=$c->getConnexion();
+
+$utilisateur=new utilisateur($cinUtilisateur,NULL,NULL,$password,NULL,NULL,NULL,NULL,NULL,NULL);
+//$u=$user->Logedin($conn,$_POST['cinUtilisateur'],$_POST['password']);
+
+$utilisateurC=new utilisateurC();
+$result=$utilisateurC->recupererutilisateur($_POST['cinUtilisateur']);
+
+foreach($result as $row)
+            {
+                $c=$row['cinUtilisateur'];
+                $p=$row['password'];
+                $r=$row['role'];
+
+                if ($c == $cinUtilisateur && $p == md5($password)) {
+                    session_start();
+                    $_SESSION['c'] = $cinUtilisateur;
+                    $_SESSION['r'] = $r;
+
+                    $vide = true;
+
+                    if ($r == '1') // role admin
+                        header("location: frontafficherutilisateur.php"); // to modify
+                    if ($r == '0') // role client
+                        header("location: backlivreur.php"); // to modify
+                }
+                else {
+                    echo "WRONG PASSWORD";
+                }
+            }
+
+            if ($vide == false) {
+                echo '<body onload="alert(\'Membre non reconnu\')">';
+                echo '<meta httpequiv="refresh" content="0;URL=login.html">';
+            }
+        }
+    }
 
 	//var_dump($u);
 //$logR=$_POST['login'];
 //$pwdR=md5($_POST['password']);
-$vide=false;
+/*$vide=false;
 
 if (!empty($_POST['cinUtilisateur']) && !empty(md5($_POST['password']))) {
 	
@@ -57,7 +97,7 @@ if (!empty($_POST['cinUtilisateur']) && !empty(md5($_POST['password']))) {
 	var_dump($t['role']);
 }
 if ($vide==false) { 
-
+		var_dump($t['role']);
          // Le visiteur n'a pas été reconnu comme étant membre de notre site. On utilise alors un petit javascript lui signalant ce fait
          echo '<body onLoad="alert(\'Membre non reconnu...\')">'; 
          // puis on le redirige vers la page d'accueil
@@ -69,7 +109,7 @@ else {
       echo "Les variables du formulaire ne sont pas déclarées.<br> Vous devez remplir le formulaire"; 
      ?> <a href="auth.html">Retour au formulaire</a>	 <?php 
 }  
-
+*/
 ?> 
 </body>
 </html>
