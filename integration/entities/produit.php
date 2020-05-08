@@ -6,12 +6,14 @@ class produit{
 	private $quantite;
 	private $prix;
 	private $id;
-	function __construct($code,$libelleP,$quantite,$prix,$id){
-		$this->code=$code;
+	private $img;
+	function __construct(/*$code,*/$libelleP,$quantite,$prix,$id,$img){
+		//$this->code=$code;
 		$this->libelleP=$libelleP;
 		$this->quantite=$quantite;
 		$this->prix=$prix;
 		$this->id=$id;
+		$this->img=$img;
 	}
 	
 	function getCode(){
@@ -28,12 +30,15 @@ class produit{
 		return $this->prix;
 	}
 	function getId(){
-		return $this->id;
+		return $this->id;		
 	}
 
-	function setCode($code){
-		$this->code=$code;
-	}
+    function getImg(){
+    	return $this->img;
+    } 
+	/*function setCode($code){
+	$this->code=$code;
+	}*/
 	function setLibelle($libelleP){
 		$this->libelleP=$libelleP;
 	}
@@ -46,7 +51,12 @@ class produit{
     function setId($id){
 		$this->id=$id;
 	}
+	function setImg($img){
+		return $this->img;
+	}
 	
+	
+
 }
 
 ?>
