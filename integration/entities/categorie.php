@@ -4,10 +4,12 @@ class categorie{
 	private $id;
 	private $libelleC;
 	private $descriptionC;
-	function __construct($id,$libelleC,$descriptionC){
+	private $img;
+	function __construct($id,$libelleC,$descriptionC,$img){
 		$this->id=$id;
 		$this->libelleC=$libelleC;
 		$this->descriptionC=$descriptionC;
+		$this->img=$img;
 	}
 	
 	function getId(){
@@ -19,6 +21,9 @@ class categorie{
 	function getDesc(){
 		return $this->descriptionC;
 	}
+	function getImg(){
+		return $this->img;
+	}
 	
 
 	function setId($id){
@@ -29,6 +34,9 @@ class categorie{
 	}
 	function setDesc($descriptionC){
 		$this->descriptionC=$descriptionC;
+	}
+	function setImg($img){
+		return $this->img;
 	}
 	
 }
