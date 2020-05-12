@@ -1,3 +1,12 @@
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+<!--  ################CORE CODE AND FUNCTIONS FOR LIVREUR ET LIVRAISON########################-->
+<!--  #############################CREATED AND DONE BY:#######################################-->
+<!--  #################################KHALED MAAMMAR#########################################-->
+<!--  ######################################2A6###############################################-->
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+
 <?PHP
 include "../config.php";
 class livraisonC {
@@ -34,7 +43,6 @@ function afficherlivraison ($livraison){
 	}
 	
 	function afficherlivraisons(){
-		//$sql="SElECT * From livraison e inner join formationphp.livraison a on e.idLivraison= a.idLivraison";
 		$sql="SElECT * From livraison";
 		$db = config::getConnexion();
 		try{
@@ -52,8 +60,7 @@ function afficherlivraison ($livraison){
 		$req->bindValue(':idLivraison',$idLivraison);
 		try{
             $req->execute();
-           // header('Location: index.php');
-        }
+                 }
         catch (Exception $e){
             die('Erreur: '.$e->getMessage());
         }
@@ -62,7 +69,7 @@ function afficherlivraison ($livraison){
 		$sql="UPDATE livraison SET idLivraison=:idLivraisonn, destination=:destination,cinClient=:cinClient,cinLivreur=:cinLivreur,idCommande=:idCommande WHERE idLivraison=:idLivraison";
 		
 		$db = config::getConnexion();
-		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
+		
 try{		
         $req=$db->prepare($sql);
 		$idLivraisonn=$livraison->getIdLivraison();
@@ -80,7 +87,7 @@ try{
 		
             $s=$req->execute();
 			
-           // header('Location: index.php');
+           
         }
         catch (Exception $e){
             echo " Erreur ! ".$e->getMessage();

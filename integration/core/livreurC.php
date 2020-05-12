@@ -1,11 +1,25 @@
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+<!--  ################CORE CODE AND FUNCTIONS FOR LIVREUR ET LIVRAISON########################-->
+<!--  #############################CREATED AND DONE BY:#######################################-->
+<!--  #################################KHALED MAAMMAR#########################################-->
+<!--  ######################################2A6###############################################-->
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+
+
 <?PHP
+
 include "../config.php";
 class livreurC {
-function afficherlivreur ($livreur){
+
+	function afficherlivreur ($livreur){
 		echo "Cin: ".$livreur->getCinLivreur()."<br>";
 		echo "Nom: ".$livreur->getNomLivreur()."<br>";
 		echo "Prénom: ".$livreur->getPrenomLivreur()."<br>";
 	}
+
+
 	function ajouterlivreur($livreur){
 		$sql="insert into livreur (cinLivreur,nomLivreur,prenomLivreur) values (:cin, :nom,:prenom)";
 		$db = config::getConnexion();
@@ -28,7 +42,6 @@ function afficherlivreur ($livreur){
 	}
 	
 	function afficherlivreurs(){
-		//$sql="SElECT * From livreur e inner join formationphp.livreur a on e.cin= a.cin";
 		$sql="SElECT * From livreur";
 		$db = config::getConnexion();
 		try{
@@ -39,6 +52,8 @@ function afficherlivreur ($livreur){
             die('Erreur: '.$e->getMessage());
         }	
 	}
+
+
 	function supprimerlivreur($cinLivreur){
 		$sql="DELETE FROM livreur where cinLivreur= :cinLivreur";
 		$db = config::getConnexion();
@@ -46,23 +61,24 @@ function afficherlivreur ($livreur){
 		$req->bindValue(':cinLivreur',$cinLivreur);
 		try{
             $req->execute();
-           // header('Location: index.php');
+
         }
         catch (Exception $e){
             die('Erreur: '.$e->getMessage());
         }
 	}
+
+
 	function modifierlivreur($livreur,$cinLivreur){
 		$sql="UPDATE livreur SET cinLivreur=:cinn, nomLivreur=:nomLivreur,prenomLivreur=:prenomLivreur WHERE cinLivreur=:cinLivreur";
 		
 		$db = config::getConnexion();
-		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
+
 try{		
         $req=$db->prepare($sql);
 		$cinn=$livreur->getCinLivreur();
         $nomLivreur=$livreur->getNomLivreur();
         $prenomLivreur=$livreur->getPrenomLivreur();
-	//	$datas = array(':cinn'=>$cinn, ':cinLivreur'=>$cinLivreur, ':nomLivreur'=>$nomLivreur,':prenomLivreur'=>$prenomLivreur);
 		$req->bindValue(':cinn',$cinn);
 		$req->bindValue(':cinLivreur',$cinLivreur);
 		$req->bindValue(':nomLivreur',$nomLivreur);
@@ -70,12 +86,8 @@ try{
 		
             $s=$req->execute();
 			
-     //       header('Location: backlivreur.php');
         }
         catch (Exception $e){
-        /*    echo " Erreur ! ".$e->getMessage();
-   echo " Les datas : " ;
-  print_r($datas);*/
         }
 		
 	}
@@ -127,7 +139,6 @@ function afficherlivraison ($livraison){
 	}
 	
 	function afficherlivraisons(){
-		//$sql="SElECT * From livraison e inner join formationphp.livraison a on e.idLivraison= a.idLivraison";
 		$sql="SElECT * From livraison";
 		$db = config::getConnexion();
 		try{
@@ -145,7 +156,6 @@ function afficherlivraison ($livraison){
 		$req->bindValue(':idLivraison',$idLivraison);
 		try{
             $req->execute();
-           // header('Location: index.php');
         }
         catch (Exception $e){
             die('Erreur: '.$e->getMessage());
@@ -155,8 +165,7 @@ function afficherlivraison ($livraison){
 		$sql="UPDATE livraison SET idLivraison=:idLivraisonn, destination=:destination,cinClient=:cinClient,cinLivreur=:cinLivreur,idCommande=:idCommande WHERE idLivraison=:idLivraison";
 		
 		$db = config::getConnexion();
-		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
-try{		
+	try{		
         $req=$db->prepare($sql);
 		$idLivraisonn=$livraison->getIdLivraison();
         $destination=$livraison->getDestination();
@@ -173,12 +182,11 @@ try{
 		
             $s=$req->execute();
 			
-           // header('Location: index.php');
         }
         catch (Exception $e){
             echo " Erreur ! ".$e->getMessage();
-   echo " Les datas : " ;
-  print_r($datas);
+  			 echo " Les datas : " ;
+ 			 print_r($datas);
         }
 		
 	}

@@ -1,3 +1,13 @@
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+<!--  ########################CORE CODE AND FUNCTIONS FOR USER################################-->
+<!--  #############################CREATED AND DONE BY:#######################################-->
+<!--  #################################KHALED MAAMMAR#########################################-->
+<!--  ######################################2A6###############################################-->
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+
+
 <?PHP
 include_once "../config.php";
 class utilisateurC {
@@ -25,7 +35,6 @@ function afficherutilisateur ($utilisateur){
         $prenom=$utilisateur->getPrenom();
         $password=$utilisateur->getPassword();
 		$sexe=$utilisateur->getSexe();
-	//	$rolen=1;
 		$role=$utilisateur->getRole();
         $dateNaiss=$utilisateur->getDateNaiss();
         $adresse=$utilisateur->getAdresse();
@@ -53,7 +62,6 @@ function afficherutilisateur ($utilisateur){
 	}
 	
 	function afficherutilisateurs(){
-		//$sql="SElECT * From utilisateur e inner join formationphp.utilisateur a on e.cinUtilisateur= a.cinUtilisateur";
 		$sql="SElECT * From utilisateur";
 		$db = config::getConnexion();
 		try{
@@ -71,7 +79,7 @@ function afficherutilisateur ($utilisateur){
 		$req->bindValue(':cinUtilisateur',$cinUtilisateur);
 		try{
             $req->execute();
-           // header('Location: index.php');
+
         }
         catch (Exception $e){
             die('Erreur: '.$e->getMessage());
@@ -81,7 +89,6 @@ function afficherutilisateur ($utilisateur){
 		$sql="UPDATE utilisateur SET cinUtilisateur=:cinUtilisateurn, nom=:nom,prenom=:prenom,password=:password,sexe=:sexe,role=:role,dateNaiss=:dateNaiss,adresse=:adresse,numTel=:numTel,email=:email WHERE cinUtilisateur=:cinUtilisateur";
 		
 		$db = config::getConnexion();
-		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 try{		
         $req=$db->prepare($sql);
 		$cinUtilisateurn=$utilisateur->getCinUtilisateur();
@@ -94,7 +101,7 @@ try{
         $adresse=$utilisateur->getAdresse();
         $numTel=$utilisateur->getNumTel();
 		$email=$utilisateur->getEmail();
-	//	$dateInscription=$utilisateur->getDateInscription();
+
 		$datas = array(':cinUtilisateurn'=>$cinUtilisateurn, ':cinUtilisateur'=>$cinUtilisateur, ':nom'=>$nom,':prenom'=>$prenom,':password'=>$password,':sexe'=>$sexe, ':role'=>$role,':dateNaiss'=>$dateNaiss,':adresse'=>$adresse,':numTel'=>$numTel,':email'=>$email);
 		$req->bindValue(':cinUtilisateurn',$cinUtilisateurn);
 		$req->bindValue(':cinUtilisateur',$cinUtilisateur);
@@ -107,11 +114,11 @@ try{
 		$req->bindValue(':adresse',$adresse);
 		$req->bindValue(':numTel',$numTel);
         $req->bindValue(':email',$email);	
-    //    $req->bindValue(':dateInscription',$dateInscription);			
+		
 		
             $s=$req->execute();
 			
-           // header('Location: index.php');
+    
         }
         catch (Exception $e){
             echo " Erreur ! ".$e->getMessage();
