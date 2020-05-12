@@ -1,4 +1,25 @@
-<<?php 
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+<!--  ############################GESTION DE L'UTILISATEUR####################################-->
+<!--  #############################CREATED AND DONE BY:#######################################-->
+<!--  #################################KHALED MAAMMAR#########################################-->
+<!--  ######################################2A6###############################################-->
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+
+<?php
+    session_start();
+
+    if (!isset($_SESSION['c'])){
+        header('Location: backlogin.php');
+    }
+    else {
+      /*  echo 'cin  ' .$_SESSION['c'];
+        echo 'role  ' .$_SESSION['r'];*/
+    }
+?>
+<!--  A SMALL FUNCTION TO REMOVE DUPLICATE HEADER ERROR -->
+<?php 
 ob_start();
  ?>
 <!DOCTYPE html>
@@ -76,9 +97,9 @@ ob_start();
                             </a>
                         </li>
 
-                          <li class="nav-item">
+                           <li class="nav-item active">
                             <a class="nav-link" href="backlivreur.php">
-                                <i class="fas fa-shopping-cart"></i>
+                                <i class="fas fa-shipping-fast"></i>
                                 Livreur
                             </a>
                         </li>
@@ -90,44 +111,42 @@ ob_start();
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="backpromotions.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                Promotions
-                            </a>
-                        </li>
-
-                        <li class="nav-item"> <!-- reclamation -->
-                            <a class="nav-link" href="backreclamations.html">
-                                <i class="far fa-user"></i>
-                                Reclamations
-                            </a>
-                        </li>
-
-                        <li class="nav-item active">
-                            <a class="nav-link" href="backaccounts.html">
-                                <i class="far fa-user"></i>
-                                Comptes
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
+                               <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-cog"></i>
                                 <span>
-                                    Settings <i class="fas fa-angle-down"></i>
+                                    Promotions <i class="fas fa-angle-down"></i>
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
+                                <a class="dropdown-item" href="backpromotions.html">Promotions</a>
+                                <a class="dropdown-item" href="#">Band d'achats</a>
                             </div>
+
+                       <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cog"></i>
+                                <span>
+                                    Reclamations <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="backreclamations.html">Reclamations</a>
+                                <a class="dropdown-item" href="#">Appreciations</a>
+                            </div>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="backafficherutilisateur.php">
+                                <i class="far fa-user"></i>
+                                Comptes
+                            </a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link d-block" href="backlogin.html">
+                            <a class="nav-link d-block" href="logout.php">
                                 Admin, <b>Logout</b>
                             </a>
                         </li>
@@ -248,7 +267,7 @@ if (isset($_GET['cinUtilisateur'])){
                     <input
                       id="name"
                       name="role"
-                      type="hidden"
+                      type="number"
                       class="form-control validate"
                       value="<?PHP echo $role ?>"
                       
@@ -323,7 +342,7 @@ if (isset($_GET['cinUtilisateur'])){
   }
 }
 if (isset($_POST['modifier'])){
-$utilisateur1=new utilisateur($_POST['cinUtilisateur'],$_POST['nom'],$_POST['prenom'],$_POST['password'],$_POST['sexe'],$_POST['role'],$_POST['dateNaiss'],$_POST['adresse'],$_POST['numTel'],$_POST['email']);
+$utilisateur1=new utilisateur($_POST['cinUtilisateur'],$_POST['nom'],$_POST['prenom'],md5($_POST['password']),$_POST['sexe'],$_POST['role'],$_POST['dateNaiss'],$_POST['adresse'],$_POST['numTel'],$_POST['email'],NULL);
 var_dump('cinUtilisateur');
 //Partie2
 /*

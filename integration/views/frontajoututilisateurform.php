@@ -1,3 +1,12 @@
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+<!--  ############################GESTION DE L'UTILISATEUR####################################-->
+<!--  #############################CREATED AND DONE BY:#######################################-->
+<!--  #################################KHALED MAAMMAR#########################################-->
+<!--  ######################################2A6###############################################-->
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+
 <?php 
  /*session_start(); 
 
@@ -20,7 +29,7 @@ ob_start();
 	 <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Add Product - Dashboard HTML Template</title>
+    <title>Inscription - Dashboard</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -57,7 +66,7 @@ ob_start();
                       >CIN
                     </label>
                     <input
-                      id="name"
+                      id="cinUtilisateur"
                       name="cinUtilisateur"
                       type="number"
                       class="form-control validate"
@@ -71,7 +80,7 @@ ob_start();
                       >Nom
                     </label>
                     <input
-                      id="name"
+                      id="nom"
                       name="nom"
                       type="text"
                       class="form-control validate"
@@ -85,7 +94,7 @@ ob_start();
                       >Prenom
                     </label>
                     <input
-                      id="name"
+                      id="prenom"
                       name="prenom"
                       type="text"
                       class="form-control validate"
@@ -100,7 +109,7 @@ ob_start();
                       >Mot de Passe
                     </label>
                     <input
-                      id="name"
+                      id="password"
                       name="password"
                       type="password"
                       class="form-control validate"
@@ -116,7 +125,7 @@ ob_start();
                       >Sexe
                     </label>
                     <input
-                      id="name"
+                      id="sexe"
                       name="sexe"
                       type="text"
                       class="form-control validate"
@@ -133,7 +142,7 @@ ob_start();
                       type="hidden"
                       class="form-control validate"
                       readonly
-                      value="<?PHP echo $rolen ?>"
+                      value="<?PHP// echo $rolen ?>"
                     />
                   </div>-->
                    <div class="form-group mb-3">
@@ -142,7 +151,7 @@ ob_start();
                       >Date de Naissance
                     </label>
                     <input
-                      id="name"
+                      id="dateNaiss"
                       name="dateNaiss"
                       type="date"
                       class="form-control validate"
@@ -156,7 +165,7 @@ ob_start();
                       >Adresse
                     </label>
                     <input
-                      id="name"
+                      id="adresse"
                       name="adresse"
                       type="text"
                       class="form-control validate"
@@ -170,7 +179,7 @@ ob_start();
                       >Numero du telephone
                     </label>
                     <input
-                      id="name"
+                      id="numTel"
                       name="numTel"
                       type="number"
                       class="form-control validate"
@@ -184,7 +193,7 @@ ob_start();
                       >E-mail
                     </label>
                     <input
-                      id="name"
+                      id="email"
                       name="email"
                       type="text"
                       class="form-control validate"
@@ -197,7 +206,7 @@ ob_start();
               
          
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase" name="inscrire">Inscrire</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase" name="inscrire" id="inscrire">Inscrire</button>
               </div>
               <?PHP
 include "../entities/utilisateur.php";
@@ -240,5 +249,41 @@ header('Location: backafficherutilisateur.php'); //change this later
         </div>
       </div>
     </div>
+     <script type="text/javascript" >
+      var sub=document.getElementById("inscrire");
+      var cin=document.getElementById('cinUtilisateur');
+      var nom=document.getElementById('nom');
+      var prenom=document.getElementById('prenom');
+      var password=document.getElementById('password');
+      var sexe=document.getElementById("sexe");
+      var dateNaiss=document.getElementById('dateNaiss');
+      var adresse=document.getElementById('adresse');
+      var numTel=document.getElementById('numTel');
+      var email=document.getElementById('email');
+
+if(sub){
+    sub.addEventListener('click',function(e){
+      if((cin.value.length==8)&&(numtel.value.length==8)){
+      //  alert("works");
+        //e.preventDefault();
+        if ((nom.value.length!=0) && (prenom.value.length!=0) && (sexe.value.length!=0) && (adresse.value.length!=0) && (email.value.length!=0)){
+             if((password.value.length>2)||(password.value.length<32)){
+
+            }else{
+              alert("Mot de passe doit avoir entre 3 et 32 lettres/nombres/symboles");
+              e.preventDefault();
+            }
+         }else{
+         alert("Il y a au moins un champs vide");
+         e.preventDefault();
+      }
+      }else{
+        alert("CIN et numtel contiennent 8 chiffres!");  
+        e.preventDefault();
+      }
+
+      
+  },false)}
+</script>
 </body>
 </html>

@@ -1,4 +1,13 @@
-<<?php 
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+<!--  ########################GESTION DE LIVRREUR ET LIVRAISON################################-->
+<!--  #############################CREATED AND DONE BY:#######################################-->
+<!--  #################################KHALED MAAMMAR#########################################-->
+<!--  ######################################2A6###############################################-->
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+
+<?php 
 ob_start();
  ?>
 <!DOCTYPE html>
@@ -7,7 +16,7 @@ ob_start();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Edit Product - Dashboard Admin Template</title>
+    <title>Modifier Livreur - Dashboard Admin</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -30,7 +39,7 @@ ob_start();
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.html">
-          <h1 class="tm-site-title mb-0">Product Admin</h1>
+          <h1 class="tm-site-title mb-0">Admin Panel</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -76,9 +85,9 @@ ob_start();
                             </a>
                         </li>
 
-                          <li class="nav-item active">
+                           <li class="nav-item active">
                             <a class="nav-link" href="backlivreur.php">
-                                <i class="fas fa-shopping-cart"></i>
+                                <i class="fas fa-shipping-fast"></i>
                                 Livreur
                             </a>
                         </li>
@@ -90,44 +99,42 @@ ob_start();
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="backpromotions.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                Promotions
-                            </a>
-                        </li>
-
-                        <li class="nav-item"> <!-- reclamation -->
-                            <a class="nav-link" href="backreclamations.html">
-                                <i class="far fa-user"></i>
-                                Reclamations
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="backaccounts.html">
-                                <i class="far fa-user"></i>
-                                Comptes
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
+                             <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-cog"></i>
                                 <span>
-                                    Settings <i class="fas fa-angle-down"></i>
+                                    Promotions <i class="fas fa-angle-down"></i>
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
+                                <a class="dropdown-item" href="backpromotions.html">Promotions</a>
+                                <a class="dropdown-item" href="#">Band d'achats</a>
                             </div>
+
+                       <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cog"></i>
+                                <span>
+                                    Reclamations <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="backreclamations.html">Reclamations</a>
+                                <a class="dropdown-item" href="#">Appreciations</a>
+                            </div>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="backafficherutilisateur.php">
+                                <i class="far fa-user"></i>
+                                Comptes
+                            </a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link d-block" href="backlogin.html">
+                            <a class="nav-link d-block" href="logout.php">
                                 Admin, <b>Logout</b>
                             </a>
                         </li>
@@ -169,7 +176,8 @@ if (isset($_GET['cinLivreur'])){
                       type="number"
                       class="form-control validate"
                       required
-                      
+                      readonly
+                      value="<?PHP echo $cinLivreur ?>"
                     />
                   </div>
                	 <div class="form-group mb-3">
@@ -178,10 +186,11 @@ if (isset($_GET['cinLivreur'])){
                       >Nom
                     </label>
                     <input
-                      id="name"
+                      id="nomLivreur"
                       name="nomLivreur"
                       type="text"
                       class="form-control validate"
+                      value="<?PHP echo $nomLivreur ?>"
                       required
                      
                     />
@@ -192,10 +201,11 @@ if (isset($_GET['cinLivreur'])){
                       >Prenom
                     </label>
                     <input
-                      id="name"
+                      id="prenomLivreur"
                       name="prenomLivreur"
                       type="text"
                       class="form-control validate"
+                      value="<?PHP echo $prenomLivreur ?>"
                       required
                       
                     />
@@ -203,7 +213,7 @@ if (isset($_GET['cinLivreur'])){
               
          
               <div class="col-12">
-                 <button type="submit" name="modifier" class="btn btn-primary btn-block text-uppercase">Modifier le livreur</button>
+                 <button type="submit" name="modifier" class="btn btn-primary btn-block text-uppercase" id="modifierlivreur">Modifier le livreur</button>
               <!-- <input type="submit" name="modifier" value="modifier">-->
                 <input type="hidden" name="cin_ini" value="<?PHP echo $_GET['cinLivreur'];?>">
 
@@ -217,9 +227,9 @@ if (isset($_POST['modifier'])){
  // echo $_POST['cin_ini'];
 header('Location: backlivreur.php');
 ob_enf_fluch();
-}else{
+}/*else{
   echo "vérifier les champs";
-}
+}*/
 ?>
             </form>
             </div>
@@ -236,6 +246,51 @@ ob_enf_fluch();
         </p>
         </div>
     </footer> 
+    <script type="text/javascript" >
+      var sub=document.getElementById("modifierlivreur");
+      var cin=document.getElementById('cinLivreur');
+      var nom=document.getElementById('nomLivreur');
+      var prenom=document.getElementById('prenomLivreur');
+  /* function testcin(cin){
+  //  alert("test");
+      
+   
+    //  var adr="@";
+    //  var pre=login.substring(0,login.indexOf(point));
+    //  var nom=login.substring(login.indexOf(point)+1,login.indexOf(adr)); 
+      if ((cin.value<10000000)||(cin.value>99999999)) {
+       // alert("CIN contient 8 chiffres!");  
+        return false;
+      }else return true;
+    }
+     function testnoms(nom,prenom){
+      
+      //alert(cin.value);
+      if ((nom.value=="") || (prenom.value=="")){
+        //alert("Nom et/ou prenom est/sont vide(s)!");
+        return false;
+      }else return true;
+
+    }*/
+if(sub){
+    sub.addEventListener('click',function(e){
+      //if(cin.value.length==8){
+      //  alert("works");
+        //e.preventDefault();
+        if ((nom.value.length!=0) && (prenom.value.length!=0)){
+
+         }else{
+         alert("Nom et/ou prenom est/sont vide(s)!");
+         e.preventDefault();
+      }
+    /*  }else{
+        alert("CIN contient 8 chiffres!");  
+        e.preventDefault();
+      }*/
+
+      
+  },false)}
+</script>
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
