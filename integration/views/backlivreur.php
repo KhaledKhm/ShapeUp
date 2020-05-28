@@ -314,7 +314,7 @@ setInterval(GetClock,1000);
         
     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col" style="margin-left: 710px; margin-top: -650px"  >
           <div class="tm-bg-primary-dark tm-block tm-block-product-categories" style="width:720px; height: 120px">
-            <h2 class="tm-block-title">Liste des Livreurs</h2>
+            <h2 class="tm-block-title">Liste des Livraisons</h2>
             <div class="tm-product-table-container"  >
               <table class="table table-hover tm-table-small tm-product-table" >
                 <thead>
