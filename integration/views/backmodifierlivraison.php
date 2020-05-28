@@ -202,8 +202,6 @@ if (isset($_GET['idLivraison'])){
                    <select name="cinLivreur" id="cinLivreur" class="custom-select tm-select-accounts">
                    <?php echo "<option>$cinLivreur</option>"; ?>
                     <?PHP
-                   //   include "../entities/promotion.php";
-                   //   include "../core/promotionC.php";
                      $livreur1C= new livreurC();
                       $listefk=$livreur1C->afficherlivreurs();
                       foreach($listefk as $row){
