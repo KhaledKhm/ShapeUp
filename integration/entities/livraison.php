@@ -14,8 +14,8 @@ class livraison{
 	private $cinClient;
 	private $cinLivreur;
 	private $idCommande;
-	function __construct($idLivraison,$destination,$cinClient,$cinLivreur,$idCommande){
-		$this->idLivraison=$idLivraison;
+	function __construct($destination,$cinClient,$cinLivreur,$idCommande){
+		$this->idLivraison=NULL;
 		$this->destination=$destination;
 		$this->cinClient=$cinClient;
 		$this->cinLivreur=$cinLivreur;
