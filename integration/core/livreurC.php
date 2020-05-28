@@ -10,7 +10,7 @@
 
 <?PHP
 
-include "../config.php";
+include_once "../config.php";
 class livreurC {
 
 	function afficherlivreur ($livreur){
@@ -105,6 +105,7 @@ try{
         }
 	}
 	}
+	/*
 class livraisonC {
 function afficherlivraison ($livraison){
 		echo "idLivraison: ".$livraison->getIdLivraison()."<br>";
@@ -201,6 +202,6 @@ function afficherlivraison ($livraison){
             die('Erreur: '.$e->getMessage());
         }
 	}
-}
+}*/
 
 ?>

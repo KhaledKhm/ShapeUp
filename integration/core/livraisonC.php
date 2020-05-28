@@ -8,7 +8,7 @@
 <!--  ########################################################################################-->
 
 <?PHP
-include "../config.php";
+include_once "../config.php";
 class livraisonC {
 function afficherlivraison ($livraison){
 		echo "idLivraison: ".$livraison->getIdLivraison()."<br>";
@@ -18,19 +18,19 @@ function afficherlivraison ($livraison){
 		echo "idCommande: ".$livraison->getIdCommande()."<br>";
 	}
 	function ajouterlivraison($livraison){
-		$sql="insert into livraison (idLivraison,destination,cinClient,cinLivreur,idCommande) values (:idLivraison, :destination,:cinClient,:cinLivreur,:idCommande)";
+		$sql="insert into livraison (idLivraison,destination,cinUtilisateur,cinLivreur,idCommande) values (:idLivraison, :destination,:cinUtilisateur,:cinLivreur,:idCommande)";
 		$db = config::getConnexion();
 		try{
         $req=$db->prepare($sql);
 		
         $idLivraison=$livraison->getIdLivraison();
         $destinaion=$livraison->getDestination();
-        $cinClient=$livraison->getCinClient();
+        $cinUtilisateur=$livraison->getCinClient();
         $cinLivreur=$livraison->getCinLivreur();
 		$idCommande=$livraison->getIdCommande();
 		$req->bindValue(':idLivraison',$idLivraison);
 		$req->bindValue(':destination',$destination);
-		$req->bindValue(':cinClient',$cinClient);
+		$req->bindValue(':cinUtilisateur',$cinUtilisateur);
 		$req->bindValue(':cinLivreur',$cinLivreur);
         $req->bindValue(':idCommande',$idCommande);			
             $req->execute();
@@ -60,39 +60,37 @@ function afficherlivraison ($livraison){
 		$req->bindValue(':idLivraison',$idLivraison);
 		try{
             $req->execute();
-                 }
+        }
         catch (Exception $e){
             die('Erreur: '.$e->getMessage());
         }
 	}
 	function modifierlivraison($livraison,$idLivraison){
-		$sql="UPDATE livraison SET idLivraison=:idLivraisonn, destination=:destination,cinClient=:cinClient,cinLivreur=:cinLivreur,idCommande=:idCommande WHERE idLivraison=:idLivraison";
+		$sql="UPDATE livraison SET destination=:destination,cinLivreur=:cinLivreur WHERE idLivraison=:idLivraison";
 		
 		$db = config::getConnexion();
-		
-try{		
+	try{		
         $req=$db->prepare($sql);
-		$idLivraisonn=$livraison->getIdLivraison();
+		//$idLivraisonn=$livraison->getIdLivraison();
         $destination=$livraison->getDestination();
-        $cinClient=$livraison->getCinClient();
+      //  $cinUtilisateur=$livraison->getCinClient();
         $cinLivreur=$livraison->getCinLivreur();
-		$idCommande=$livraison->getIdCommande();
-		$datas = array(':idLivraisonn'=>$idLivraisonn, ':idLivraison'=>$idLivraison, ':destinaion'=>$destination,':cinClient'=>$cinClient,':cinLivreur'=>$cinLivreur,':idCommande'=>$idCommande);
-		$req->bindValue(':idLivraisonn',$idLivraisonn);
+	//	$idCommande=$livraison->getIdCommande();
+		$datas = array(':destinaion'=>$destination,':cinLivreur'=>$cinLivreur);
+		//$req->bindValue(':idLivraisonn',$idLivraisonn);
 		$req->bindValue(':idLivraison',$idLivraison);
 		$req->bindValue(':destination',$destination);
-		$req->bindValue(':cinClient',$cinClient);
+		//$req->bindValue(':cinUtilisateur',$cinUtilisateur);
 		$req->bindValue(':cinLivreur',$cinLivreur);	
-        $req->bindValue(':idCommande',$idCommande);			
+      //  $req->bindValue(':idCommande',$idCommande);			
 		
             $s=$req->execute();
 			
-           
         }
         catch (Exception $e){
             echo " Erreur ! ".$e->getMessage();
-   echo " Les datas : " ;
-  print_r($datas);
+  			 echo " Les datas : " ;
+ 			 print_r($datas);
         }
 		
 	}
