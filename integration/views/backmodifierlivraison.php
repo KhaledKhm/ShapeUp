@@ -1,4 +1,4 @@
-<<?php 
+<?php 
 ob_start();
  ?>
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ ob_start();
   <body>
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="backindex.php">
           <h1 class="tm-site-title mb-0">Product Admin</h1>
         </a>
         <button
@@ -47,7 +47,7 @@ ob_start();
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto h-100">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" href="backindex.php">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
                 <span class="sr-only">(current)</span>
               </a>
@@ -70,7 +70,7 @@ ob_start();
                     -->
                     
                           <li class="nav-item">
-                            <a class="nav-link" href="backevents.html">
+                            <a class="nav-link" href="backevents.php">
                                 <i class="fas fa-shopping-cart"></i>
                                 Events
                             </a>
@@ -84,28 +84,28 @@ ob_start();
                         </li>
 
     					<li class="nav-item">
-                            <a class="nav-link" href="backproducts.html">
+                            <a class="nav-link" href="backproducts.php">
                                 <i class="fas fa-shopping-cart"></i>
                                 Produits
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="backpromotions.html">
+                            <a class="nav-link" href="backpromotions.php">
                                 <i class="fas fa-shopping-cart"></i>
                                 Promotions
                             </a>
                         </li>
 
                         <li class="nav-item"> <!-- reclamation -->
-                            <a class="nav-link" href="backreclamations.html">
+                            <a class="nav-link" href="backreclamations.php">
                                 <i class="far fa-user"></i>
                                 Reclamations
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="backaccounts.html">
+                            <a class="nav-link" href="backafficherutilisateur.php">
                                 <i class="far fa-user"></i>
                                 Comptes
                             </a>
@@ -127,7 +127,7 @@ ob_start();
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link d-block" href="backlogin.html">
+                            <a class="nav-link d-block" href="logout.php">
                                 Admin, <b>Logout</b>
                             </a>
                         </li>
@@ -147,79 +147,120 @@ ob_start();
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
               	<?PHP
-include "../entities/livreur.php";
-include "../core/livreurC.php";
+include_once "../entities/livreur.php";
+include_once "../entities/livraison.php";
+include_once "../core/livreurC.php";
+include_once "../core/livraisonC.php";
 if (isset($_GET['idLivraison'])){
 	$livraisonC=new livraisonC();
     $result=$livraisonC->recupererlivraison($_GET['idLivraison']);
 	foreach($result as $row){
-		//$cinLivreur=$row['idLivraison'];
+		$idLivraison=$row['idLivraison'];
 		$destination=$row['destination'];
-	//	$prenomLivreur=$row['prenomLivreur'];
+		$cinUtilisateur=$row['cinUtilisateur'];
+    $cinLivreur=$row['cinLivreur'];
+    $idCommande=$row['idCommande'];
 ?>
                    <form action="" class="tm-edit-product-form" method="POST">
+                <!--  <div class="form-group mb-3">
+                    <label
+                      for="idLivraison"
+                      >ID Livraison
+                    </label>
+                    <input
+                      id="idLivraison"
+                      name="idLivraison"
+                      type="text"
+                      class="form-control validate"
+                      readonly
+                      value="<?PHP //echo $idLivraison ?>"
+                      
+                    />
+                  </div>-->
                   <div class="form-group mb-3">
                     <label
                       for="name"
                       >destination
                     </label>
                     <input
-                      id="name"
+                      id="destination"
                       name="destination"
                       type="text"
                       class="form-control validate"
                       required
+                      value="<?PHP echo $destination ?>"
                       
                     />
                   </div>
-           <!--    	 <div class="form-group mb-3">
+                  
+                  
+              	 <div class="form-group mb-3">
+                    <label
+                      for="CIN Livreur"
+                      >CIN Livreur
+                    </label>
+                   <select name="cinLivreur" id="cinLivreur" class="custom-select tm-select-accounts">
+                   <?php echo "<option>$cinLivreur</option>"; ?>
+                    <?PHP
+                   //   include "../entities/promotion.php";
+                   //   include "../core/promotionC.php";
+                     $livreur1C= new livreurC();
+                      $listefk=$livreur1C->afficherlivreurs();
+                      foreach($listefk as $row){
+                      $cinLivreurfk= $row["cinLivreur"];
+                      echo "<option>$cinLivreurfk</option>";
+                      }
+                    ?>
+                    </select>
+                       </div>
+                <div class="form-group mb-3">
                     <label
                       for="name"
-                      >Nom
+                      >CIN Utilisateur
                     </label>
                     <input
-                      id="name"
-                      name="nomLivreur"
+                      id="cinUtilisateur"
+                      name="cinUtilisateur"
                       type="text"
                       class="form-control validate"
-                      required
-                     
+                      readonly
+                      value="<?PHP echo $cinUtilisateur ?>"
                     />
                   </div>
-                 <div class="form-group mb-3">
+               <div class="form-group mb-3">
                     <label
-                      for="name"
-                      >Prenom
+                      for="idCommande"
+                      >Nombre de Commande
                     </label>
                     <input
-                      id="name"
-                      name="prenomLivreur"
+                      id="idCommande"
+                      name="idCommande"
                       type="text"
                       class="form-control validate"
-                      required
-                      
+                      readonly
+                      value="<?PHP echo $idCommande ?>"
                     />
-                  </div>-->
-              
-         
+                  </div>
+         <br>
               <div class="col-12">
-                 <button type="submit" name="modifier" class="btn btn-primary btn-block text-uppercase">Modifier livraisonr</button>
+                 <button type="submit" name="modifier" class="btn btn-primary btn-block text-uppercase">Modifier livraison</button>
               <!-- <input type="submit" name="modifier" value="modifier">-->
-                <input type="hidden" name="cin_ini" value="<?PHP echo $_GET['destination'];?>">
+                <input type="hidden"  name="idLivraison_ini"  id="idLivraison_ini" value="<?PHP echo $_GET['idLivraison'];?>">
 
               </div>
               <?PHP
   }
 }
 if (isset($_POST['modifier'])){
-  $livreur=new livreur($_POST['destination']);
-  $livreurC->modifierlivreur($livreur,$_POST['cin_ini']);
+  $livraison=new livraison($_POST['destination'],NULL,$_POST['cinLivreur'],NULL);
+  $livraisonC->modifierlivraison($livraison,$_POST['idLivraison_ini']);
+  var_dump($_POST['destination']);
  // echo $_POST['cin_ini'];
 header('Location: backlivreur.php');
 ob_enf_fluch();
-}else{
+}/*else{
   echo "vérifier les champs";
-}
+}*/
 ?>
             </form>
             </div>

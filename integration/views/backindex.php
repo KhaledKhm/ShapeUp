@@ -182,6 +182,48 @@ GetClock();
 setInterval(GetClock,1000);
 </script>
 
+
+<div align="center">
+ <?php  
+ $connect = mysqli_connect("localhost", "root", "", "shapeup");  
+ $query = "SELECT destination, count(*) as number FROM livraison GROUP BY destination";  
+ $result = mysqli_query($connect, $query);  
+ ?>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Destination', 'Nombre de livraison'],  
+                          <?php  
+                          while($row = mysqli_fetch_array($result))  
+                          {  
+                               echo "['".$row["destination"]."', ".$row["number"]."],";  
+                          }  
+                          ?>  
+        ]);
+
+        var options = {
+          title: 'Statistique de nombre de livraison pour chaque destination'
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('column'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="column" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
+<!-- /. PAGE INNER  -->
+            </div>
          <!--   <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block">
@@ -439,7 +481,7 @@ setInterval(GetClock,1000);
         <footer class="tm-footer row tm-mt-small">
             <div class="col-12 font-weight-light">
                 <p class="text-center text-white mb-0 px-4 small">
-                    Copyright &copy; <b>2018</b> All rights reserved. 
+                    Copyright &copy; <b>2020</b> All rights reserved. 
                     
                     Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
                 </p>

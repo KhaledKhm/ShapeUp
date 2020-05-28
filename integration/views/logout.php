@@ -18,7 +18,7 @@ session_unset ();
 session_destroy ();
 
 // On redirige le visiteur vers la page d'accueil
-header ('location: backlogin.php'); //TO BE CHANGED
+header ('location: front/views/home.php'); //TO BE CHANGED
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

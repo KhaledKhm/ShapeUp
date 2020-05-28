@@ -74,7 +74,7 @@
                       Login
                     </button>
                   </div>
-                  <a href="frontajoututilisateur.php" class="mt-5 btn btn-primary btn-block text-uppercase">
+                  <a href="frontajoututilisateurform.php" class="mt-5 btn btn-primary btn-block text-uppercase">
                     Sign up
                   </a>
                 </form>

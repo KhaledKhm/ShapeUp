@@ -21,6 +21,7 @@
 
 <?PHP //allocation de livreur et livraison
 include "../core/livreurC.php";
+include "../core/livraisonC.php";
 //include "../core/livraisonC.php";
 $livreur1C=new livreurC();
 $listeLivreurs=$livreur1C->afficherlivreurs();
@@ -50,6 +51,93 @@ $listeLivraison=$livraison1C->afficherlivraisons();
 	https://templatemo.com/tm-524-product-admin
 	-->
   <link href="css/toastr.css" rel="stylesheet"/>
+
+
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+ <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+     <style>
+    #snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .marker {
+        background-image: url('img/mapbox-icon.png');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .mapboxgl-popup {
+        max-width: 200px;
+      }
+      .mapboxgl-popup-content {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+      }
+    </style>
+
   </head>
 
   <body id="reportsPage">
@@ -79,6 +167,12 @@ $listeLivraison=$livraison1C->afficherlivraisons();
               </a>
             </li>
                     
+                          <li class="nav-item">
+                            <a class="nav-link" href="backcommande.php">
+                                <i class="fas fa-shopping-cart"></i>
+                                Commandes
+                            </a>
+                        </li>
                           <li class="nav-item">
                             <a class="nav-link" href="backevents.php">
                                 <i class="fas fa-shopping-cart"></i>
@@ -169,13 +263,60 @@ setInterval(GetClock,1000);
 </script>
 
 
-    <div class="container mt-5" style="margin-left: 0;">
+    <div class="container mt-5" >
       <div class="row tm-content-row">
-        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
-          <div class="tm-bg-primary-dark tm-block tm-block-products" style="width:740px;" >
-            <h2 class="tm-block-title">Liste des Livraisons</h2>
-            <div class="tm-product-table-container" >
-              <table class="table table-hover tm-table-small tm-product-table">
+       <div id="snackbar">Suppression reussite</div>
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col" style="margin-left: -400px;"  >
+          <div class="tm-bg-primary-dark tm-block tm-block-product-categories" style="width:720px; height: 120px">
+            <h2 class="tm-block-title">Liste des Livreurs</h2><button onclick="myFunction()">test notif</button>
+            <div class="tm-product-table-container"  >
+              <table class="table table-hover tm-table-small tm-product-table" >
+                <thead>
+                  <tr>
+                  
+                    <th scope="col">CIN de Livreur</th>
+                    <th scope="col">Nom de Livreur</th>
+                    <th scope="col">Prenom de Livreur</th>
+                    <th scope="col">Supprimer</th>
+                     <th scope="col">Modifier</th>
+                   <!-- <th scope="col">&nbsp;</th>-->
+                  </tr>
+                </thead>
+                <tbody>
+                    <?PHP
+   foreach($listeLivreurs as $row){
+        ?>
+        <tr>
+            <td><?PHP echo $row['cinLivreur']; ?></td>
+            <td><?PHP echo $row['nomLivreur']; ?></td>
+            <td><?PHP echo $row['prenomLivreur']; ?></td>
+            <td><form method="POST" action="">
+                    <a  name="supprimer" class="tm-product-delete-link" href="backsupprimerlivreur.php?cinLivreur=<?PHP echo $row['cinLivreur']; ?>"  >
+                        <i class="far fa-trash-alt tm-product-delete-icon" ></i>
+                      </a>
+                  <!--  <input href="backsupprimerlivreur.php?cinLivreur=<?PHP//echo $row['cinLivreur']; ?>" type="hidden" value="<?PHP //echo $row['cinLivreur']; ?>" name="cinLivreur">-->
+                </form>
+            </td>
+            <td><a style="font-size: 20px ;color: white" class="fas fa-sliders-h" href="backmodifierlivreur.php?cinLivreur=<?PHP echo $row['cinLivreur']; ?>">
+                    </a></td>
+        </tr>
+        <?PHP
+    }
+    ?>
+               
+                </tbody>
+              </table>
+            </div>
+             <a
+              href="backajoutlivreurform.php"
+              class="btn btn-primary btn-block text-uppercase mb-3">Ajouter Livreur</a>
+          </div>
+        
+    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col" style="margin-left: 710px; margin-top: -650px"  >
+          <div class="tm-bg-primary-dark tm-block tm-block-product-categories" style="width:720px; height: 120px">
+            <h2 class="tm-block-title">Liste des Livreurs</h2>
+            <div class="tm-product-table-container"  >
+              <table class="table table-hover tm-table-small tm-product-table" >
                 <thead>
                   <tr>
                   
@@ -199,6 +340,7 @@ setInterval(GetClock,1000);
             <td><?PHP echo $row['cinUtilisateur']; ?></td>
             <td><?PHP echo $row['cinLivreur']; ?></td>
             <td><?PHP echo $row['idCommande']; ?></td>
+
             <td><form method="POST" action="">
                     <a  name="supprimer" class="tm-product-delete-link" href="backsupprimerlivraison.php?idLivraison=<?PHP echo $row['idLivraison']; ?>">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
@@ -216,57 +358,82 @@ setInterval(GetClock,1000);
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col" >
-          <div class="tm-bg-primary-dark tm-block tm-block-product-categories" style="width:680px;">
-            <h2 class="tm-block-title">Liste des Livreurs</h2>
-            <div class="tm-product-table-container" >
-              <table class="table table-hover tm-table-small tm-product-table">
-                <thead>
-                  <tr>
-                  
-                    <th scope="col">CIN de Livreur</th>
-                    <th scope="col">Nom de Livreur</th>
-                    <th scope="col">Prenom de Livreur</th>
-                    <th scope="col">&nbsp;</th>
-                     <th scope="col">&nbsp;</th>
-                   <!-- <th scope="col">&nbsp;</th>-->
-                  </tr>
-                </thead>
-                <tbody>
-                    <?PHP
-   foreach($listeLivreurs as $row){
-        ?>
-        <tr>
-            <td><?PHP echo $row['cinLivreur']; ?></td>
-            <td><?PHP echo $row['nomLivreur']; ?></td>
-            <td><?PHP echo $row['prenomLivreur']; ?></td>
-            <td><form method="POST" action="">
-                    <a  name="supprimer" class="tm-product-delete-link" href="backsupprimerlivreur.php?cinLivreur=<?PHP echo $row['cinLivreur']; ?>"  >
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                  <!--  <input href="backsupprimerlivreur.php?cinLivreur=<?PHP//echo $row['cinLivreur']; ?>" type="hidden" value="<?PHP //echo $row['cinLivreur']; ?>" name="cinLivreur">-->
-                </form>
-            </td>
-            <td><a style="font-size: 20px ;color: white" class="fas fa-sliders-h" href="backmodifierlivreur.php?cinLivreur=<?PHP echo $row['cinLivreur']; ?>">
-                    </a></td>
-        </tr>
-        <?PHP
-    }
-    ?>
-               
-                </tbody>
-              </table>
-            </div>
-             <a
-              href="backajoutlivreurform.php"
-              class="btn btn-primary btn-block text-uppercase mb-3">Ajouter Livreur</a>
-          </div>
+           </div></div>
+    </div>   
+    </div>
+
+  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col"    >
+       
+           <div class="tm-product-table-container" id='map' style="margin-left: 1050px; margin-top: -710px; height: 650px" ></div>
         </div>
       </div>
     </div>
+  
+<script type="text/javascript">
+  function myFunction() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+    <script type="text/javascript">
+     /* mapboxgl.accessToken = 'pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2p0MG01MXRqMW45cjQzb2R6b2ptc3J4MSJ9.zA2W0IkI0c6KaAhJfk9bWg';
 
+      var geojson = {
+        'type': 'FeatureCollection',
+        'features': [
+          {
+            'type': 'Feature',
+            'geometry': {
+              'type': 'Point',
+              'coordinates': [10.235891,36.891482]
+            },
+            'properties': {
+              'title': 'Mapbox',
+              'description': '15 Rue des roses, Chotrana III, Ariana, Tunisie'
+            }
+          }
+        ]
+      };
+
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/light-v10',
+        center: [8.8908642,33.2376713],
+        zoom: 5
+      });
+
+      // add markers to map
+      geojson.features.forEach(function(marker) {
+        // create a HTML element for each feature
+        var el = document.createElement('div');
+        el.className = 'marker';
+
+        // make a marker for each feature and add it to the map
+        new mapboxgl.Marker(el)
+          .setLngLat(marker.geometry.coordinates)
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25 }) // add popups
+              .setHTML(
+                '<h3>' +
+                  marker.properties.title +
+                  '</h3><p>' +
+                  marker.properties.description +
+                  '</p>'
+              )
+          )
+          .addTo(map);
+      });*/
+      var map = L.map('map').setView([36.880891, 10.213482], 10);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+L.marker([36.880891,10.213482]).addTo(map)
+    .bindPopup('ShapeUp Warehouse.')
+    .openPopup();
+    </script>
 
     <footer class="tm-footer row tm-mt-small">
       <div class="col-12 font-weight-light">

@@ -44,7 +44,7 @@ foreach($result as $row)
                     if ($r == '1') // role admin
                         header("location: backindex.php"); // to modify
                     if ($r == '0') // role client
-                        header("location: backlivreur.php"); // to modify
+                        header("location: front/views/home.php"); // to modify
                 }
                 else {
                     echo "WRONG PASSWORD";

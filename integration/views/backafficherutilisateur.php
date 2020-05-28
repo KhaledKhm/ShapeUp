@@ -1,14 +1,23 @@
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
+<!--  ############################GESTION DE L'UTILISATEUR####################################-->
+<!--  #############################CREATED AND DONE BY:#######################################-->
+<!--  #################################KHALED MAAMMAR#########################################-->
+<!--  ######################################2A6###############################################-->
+<!--  ########################################################################################-->
+<!--  ########################################################################################-->
 <?php
     session_start();
 
     if (!isset($_SESSION['c'])){
-        header('Location: auth.html');
+        header('Location: backlogin.php');
     }
     else {
-        echo 'cin  ' .$_SESSION['c'];
-        echo 'role  ' .$_SESSION['r'];
+    //    echo 'cin  ' .$_SESSION['c'];
+    //    echo 'role  ' .$_SESSION['r'];
     }
 ?>
+
 <?PHP
 include "../core/utilisateurC.php";
 //include "../core/livraisonC.php";
@@ -21,7 +30,7 @@ $listeUtilisateur=$utilisateur1C->afficherutilisateurs();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Product Page - Admin HTML Template</title>
+    <title>Control panel - Admin</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -41,8 +50,8 @@ $listeUtilisateur=$utilisateur1C->afficherutilisateurs();
   <body id="reportsPage">
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
-        <a class="navbar-brand" href="backindex.html">
-          <h1 class="tm-site-title mb-0">Product Admin</h1>
+        <a class="navbar-brand" href="backindex.php">
+          <h1 class="tm-site-title mb-0">Admin Panel</h1>
         </a>
         <button
           class="navbar-toggler ml-auto mr-0"
@@ -59,7 +68,7 @@ $listeUtilisateur=$utilisateur1C->afficherutilisateurs();
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto h-100">
             <li class="nav-item">
-              <a class="nav-link" href="backindex.html">
+              <a class="nav-link" href="backindex.php">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
                 <span class="sr-only">(current)</span>
               </a>
@@ -82,7 +91,7 @@ $listeUtilisateur=$utilisateur1C->afficherutilisateurs();
                     -->
                     
                           <li class="nav-item">
-                            <a class="nav-link" href="backevents.html">
+                            <a class="nav-link" href="backevents.php">
                                 <i class="fas fa-shopping-cart"></i>
                                 Events
                             </a>
@@ -90,31 +99,43 @@ $listeUtilisateur=$utilisateur1C->afficherutilisateurs();
 
                           <li class="nav-item">
                             <a class="nav-link" href="backlivreur.php">
-                                <i class="fas fa-shopping-cart"></i>
+                                <i class="fas fa-shipping-fast"></i>
                                 Livreur
                             </a>
                         </li>
 
     					<li class="nav-item">
-                            <a class="nav-link" href="backproducts.html">
+                            <a class="nav-link" href="backproducts.php">
                                 <i class="fas fa-shopping-cart"></i>
                                 Produits
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="backpromotions.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                Promotions
+                              <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cog"></i>
+                                <span>
+                                    Promotions <i class="fas fa-angle-down"></i>
+                                </span>
                             </a>
-                        </li>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="backpromotions.html">Promotions</a>
+                                <a class="dropdown-item" href="#">Band d'achats</a>
+                            </div>
 
-                        <li class="nav-item"> <!-- reclamation -->
-                            <a class="nav-link" href="backreclamations.html">
-                                <i class="far fa-user"></i>
-                                Reclamations
+                       <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cog"></i>
+                                <span>
+                                    Reclamations <i class="fas fa-angle-down"></i>
+                                </span>
                             </a>
-                        </li>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="backreclamations.html">Reclamations</a>
+                                <a class="dropdown-item" href="#">Appreciations</a>
+                            </div>
 
                         <li class="nav-item active">
                             <a class="nav-link" href="backafficherutilisateur.php">
@@ -122,24 +143,10 @@ $listeUtilisateur=$utilisateur1C->afficherutilisateurs();
                                 Comptes
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-cog"></i>
-                                <span>
-                                    Settings <i class="fas fa-angle-down"></i>
-                                </span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
-                            </div>
-                        </li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link d-block" href="backlogin.html">
+                            <a class="nav-link d-block" href="logout.php">
                                 Admin, <b>Logout</b>
                             </a>
                         </li>
@@ -147,20 +154,40 @@ $listeUtilisateur=$utilisateur1C->afficherutilisateurs();
                 </div>
             </div> <!--navigation bar ends here -->
     </nav>
-    <div class="container mt-5">
-      <div class="row tm-content-row">
-        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
-          <div class="tm-bg-primary-dark tm-block tm-block-products">
-            <h2 class="tm-block-title">Liste des Utilisateurs</h2>
-            <div class="tm-product-table-container">
-              <table class="table table-hover tm-table-small tm-product-table">
+     <div id="clockbox" style="color: white; font-weight: bold"></div>
+
+<script type="text/javascript">
+var tday=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+var tmonth=["Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre"];
+
+function GetClock(){
+var d=new Date();
+var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getFullYear();
+var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds();
+if(nmin<=9) nmin="0"+nmin;
+if(nsec<=9) nsec="0"+nsec;
+
+var clocktext=""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+", "+nyear+" "+nhour+":"+nmin+":"+nsec+"";
+document.getElementById('clockbox').innerHTML=clocktext;
+}
+
+GetClock();
+setInterval(GetClock,1000);
+</script>
+    <div class="container mt-5" style="margin-left: 0;">
+      <div class="row tl-content-row" >
+        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col" > <h2 class="tm-block-title">Liste des Utilisateurs</h2>
+            
+          <div class="tm-bg-primary-dark tm-block tm-block-products" style="width:1880px;">
+           <div class="tm-product-table-container" style="width:1800px;">
+              <table class="table table-hover tm-table-large tm-product-table">
                 <thead>
                   <tr>
                   
                     <th scope="col">CIN Utilisateur</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prenom</th>
-                    <th scope="col">Mot de passe</th>
+                  <!--  <th scope="col">Mot de passe</th>-->
                     <th scope="col">Sexe</th>
                     <th scope="col">Role</th>
                     <th scope="col">Date de naissance</th>
@@ -168,8 +195,8 @@ $listeUtilisateur=$utilisateur1C->afficherutilisateurs();
                     <th scope="col">Num de telephone</th>
                     <th scope="col">E-Mail</th>
                     <th scope="col">Date d'inscription</th>
-                    <th scope="col">&nbsp;</th>
-                    <th scope="col">&nbsp;</th>
+                    <th scope="col">Supprimer</th>
+                    <th scope="col">Modifier</th>
                    <!-- <th scope="col">&nbsp;</th>-->
                   </tr>
                 </thead>
@@ -181,7 +208,7 @@ $listeUtilisateur=$utilisateur1C->afficherutilisateurs();
             <td><?PHP echo $row['cinUtilisateur']; ?></td>
             <td><?PHP echo $row['nom']; ?></td>
             <td><?PHP echo $row['prenom']; ?></td>
-            <td><?PHP echo $row['password']; ?></td>
+         <!--   <td><?PHP// echo $row['password']; ?></td>-->
             <td><?PHP echo $row['sexe']; ?></td>
             <td><?PHP if (($row['role'])==0){
                         echo "Client";}
@@ -200,8 +227,8 @@ $listeUtilisateur=$utilisateur1C->afficherutilisateurs();
                     <input href="backsupprimerutilisateur.php?cinUtilisateur=<?PHP echo $row['cinUtilisateur']; ?>" type="hidden" value="<?PHP echo $row['cinUtilisateur']; ?>" name="cinUtilisateur">
                 </form>
             </td>
-            <td><a href="backmodifierutilisateur.php?cinUtilisateur=<?PHP echo $row['cinUtilisateur']; ?>">
-                    Modifier</a></td>
+            <td><a style="font-size: 20px ;color: white" class="fas fa-sliders-h" href="backmodifierutilisateur.php?cinUtilisateur=<?PHP echo $row['cinUtilisateur']; ?>">
+                    </a></td>
         </tr>
         <?PHP
     }
