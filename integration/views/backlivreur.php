@@ -11,7 +11,7 @@
     session_start();
 
     if (!isset($_SESSION['c'])){
-        header('Location: backlogin.php');
+         header('Location: backlogin.php');
     }
     else {
       /*  echo 'cin  ' .$_SESSION['c'];
