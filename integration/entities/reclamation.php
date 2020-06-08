@@ -5,7 +5,7 @@ class reclamation{
 	private $texteReclamation;
 	private $etat;
 	private $texteReponse;
-	private $cinUtilisateur
+	private $cinUtilisateur;
 
 	function __construct($idReclamation, $typeReclamation, $texteReclamation, $etat, $texteReponse, $cinUtilisateur){
 		$this->idReclamation=$idReclamation;
