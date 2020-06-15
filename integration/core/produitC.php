@@ -1,5 +1,5 @@
 <?PHP
-include "../../config.php";
+include_once "../config.php";
 class produitC{
      function     afficherProduit ($produit){
 		echo "Code: ".$produit->getCode()."<br>";
@@ -66,27 +66,26 @@ class produitC{
 	}
 
 	   function modifierProduit($produit,$code){
-	   	 $img=$produit->getImg();
-$sql="UPDATE produit SET libelleP=:libelleP,quantite=:quantite,prix=:prix,id=:id,img='$img' WHERE code=:code";
+$sql="UPDATE produit SET code=:codeN, libelleP=:libelleP,quantite=:quantite,prix=:prix,id=:id,img=:img WHERE code=:code";
 $db = config::getConnexion();
 try{
 
         $req=$db->prepare($sql);
-
-//$codeN=$produit->getCode();
+		$codeN=$produit->getCode();
         $libelleP=$produit->getLibelle();
         $quantite=$produit->getQuant();
         $prix=$produit->getPrix();
         $id=$produit->getId();
-       
+        $img=$produit->getImg();
         
+
+$req->bindValue(':codeN',$codeN);
+$req->bindValue(':code',$code);
 $req->bindValue(':libelleP',$libelleP);
 $req->bindValue(':quantite',$quantite);
 $req->bindValue(':prix',$prix);
 $req->bindValue(':id',$id);
-$req->bindValue(':code',$code);
-
-//$req->bindValue(':img',$img);
+$req->bindValue(':img',$img);
 
 
             $s=$req->execute();
@@ -97,35 +96,6 @@ $req->bindValue(':code',$code);
             echo " Erreur ! ".$e->getMessage();
         }
 }
-
-
-
-
-	function modifiercolProduit($col,$nv,$libelleP)
-	{
-		$sq2 = "Update produit set $col=:nv where libelleP=:libelleP";
-		$db = config::getConnexion();
-		try {
-		$req = $db->prepare($sq2);
-        //lier variable => paramètre
-        $req->bindValue(':libelleP',$libelleP);
-		$req->bindValue(':nv',$nv);
-		$req->execute();
-	}
-
-	catch(Exception $e){
-	echo 'Erreur :'.$e->getMessage();
-	}
-		
-	}
-
-
-
-
-
-
-
-
             function recupererProduit($code){
 		    $sql="SELECT * from produit where code=$code";
 		    $db = config::getConnexion();
@@ -150,40 +120,15 @@ $req->bindValue(':code',$code);
         catch (Exception $e){
             die('Erreur: '.$e->getMessage());
         }	
-	   }
-
-	    function afficherProduitsTrierQ(){
-	
-		$sql="SElECT * From produit Order By quantite Desc";
-		$db = config::getConnexion();
-		try{
-		$liste=$db->query($sql);
-		return $liste;
-		}
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
-        }	
-	   }
-
-function rechercherProduits($libelleP){
-		$sql="SELECT * from produit where libelleP='$libelleP'";
-		$db = config::getConnexion();
-		try{
-		$liste=$db->query($sql);
-		return $liste;
-		}
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
-        }
 	}
 		
+
 }
 
 
 
-
 class categorieC {
-      function     afficherCategorie ($categorie){
+      function afficherCategorie ($categorie){
 		echo "Identifiant: ".$categorie->getId()."<br>";
 		echo "Libelle: ".$categorie->getLibel()."<br>";
 		echo "Description: ".$categorie->getDesc()."<br>";
@@ -240,8 +185,7 @@ class categorieC {
 	}
 
 	function modifierCategorie($categorie,$id){
-		  $img=$categorie->getImg();
-		$sql="UPDATE categorieproduit SET id=:iid, libelleC=:libel,descriptionC=:descc,img='$img' WHERE id=:id";
+		$sql="UPDATE categorieproduit SET id=:iid, libelleC=:libel,descriptionC=:descc,img=:img WHERE id=:id";
 		$db = config::getConnexion();
 try{
 
@@ -249,15 +193,15 @@ try{
 		$iid=$categorie->getId();
         $libelleC=$categorie->getLibel();
         $descriptionC=$categorie->getDesc();
-       
+         $img=$categorie->getImg();
         
-		//$datas = array(':iid'=>$iid, ':id'=>$id, ':libel'=>$libelleC,':descc'=>$descriptionC,':img'=>$img);
+		$datas = array(':iid'=>$iid, ':id'=>$id, ':libel'=>$libelleC,':descc'=>$descriptionC,':img'=>$img);
 		//lier variable => paramètre
 		$req->bindValue(':iid',$iid);
 		$req->bindValue(':id',$id);
 		$req->bindValue(':libel',$libelleC);
 		$req->bindValue(':descc',$descriptionC);
-       // $req->bindValue(':img',$img);
+        $req->bindValue(':img',$img);
 		
 		
             $s=$req->execute();
