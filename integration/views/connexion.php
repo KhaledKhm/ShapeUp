@@ -1,12 +1,3 @@
-<!--  ########################################################################################-->
-<!--  ########################################################################################-->
-<!--  #######################CODE TO CONFIRM SESSION CONNECTION###############################-->
-<!--  #############################CREATED AND DONE BY:#######################################-->
-<!--  #################################KHALED MAAMMAR#########################################-->
-<!--  ######################################2A6###############################################-->
-<!--  ########################################################################################-->
-<!--  ########################################################################################-->
-
 <html>
 <head>
 <meta charset="utf8">
@@ -34,17 +25,17 @@ foreach($result as $row)
                 $p=$row['password'];
                 $r=$row['role'];
 
-                if ($c == $cinUtilisateur && $p == md5($password)) {
+                if ($c == $cinUtilisateur && $p == $password) {
                     session_start();
                     $_SESSION['c'] = $cinUtilisateur;
                     $_SESSION['r'] = $r;
-
+                     
                     $vide = true;
 
                     if ($r == '1') // role admin
-                        header("location: backindex.php"); // to modify
+                        header("location: ../BackCommande/BackCommande.php"); // to modify
                     if ($r == '0') // role client
-                        header("location: front/views/home.php"); // to modify
+                        header("location: categories.php"); // to modify
                 }
                 else {
                     echo "WRONG PASSWORD";
@@ -53,7 +44,7 @@ foreach($result as $row)
 
             if ($vide == false) {
                 echo '<body onload="alert(\'Membre non reconnu\')">';
-                echo '<meta httpequiv="refresh" content="0;URL=backlogin.php">';
+                echo '<meta httpequiv="refresh" content="0;URL=login.php">';
             }
         }
     }
