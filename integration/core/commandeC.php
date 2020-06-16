@@ -89,6 +89,54 @@ function afficherCommandes(){
             die('Erreur: '.$e->getMessage());
         }
 	}
+	   function confirmerCommande($idCommande){
+$sql="UPDATE commande SET statusCommande=:statusCommande WHERE idCommande=".$idCommande;
+$db = config::getConnexion();
+try{
+
+        $req=$db->prepare($sql);
+		
+        $statusCommande="Confirmé";
+        
+        
+
+		$req->bindValue(':statusCommande',$statusCommande);
+
+
+            $s=$req->execute();
+
+           // header('Location: index.php');
+        }
+        catch (Exception $e){
+            echo " Erreur ! ".$e->getMessage();
+        }
 }
+	   function AnnulerCommande($idCommande){
+	
+
+		$sql="UPDATE commande SET statusCommande=:statusCommande WHERE idCommande=".$idCommande;
+		$db = config::getConnexion();
+		
+		try{
+
+        $req=$db->prepare($sql);
+		
+        $statusCommande="Annulée";	
+        
+        
+
+	$req->bindValue(':statusCommande',$statusCommande);
+
+
+            $s=$req->execute();
+
+           // header('Location: index.php');
+        }
+        catch (Exception $e){
+            echo " Erreur ! ".$e->getMessage();
+        }
+}
+}
+
 
 ?>

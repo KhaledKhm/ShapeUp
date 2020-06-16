@@ -86,33 +86,9 @@ function supprimercart($idcart){
             die('Erreur: '.$e->getMessage());
         }}
 
-function recupererstock($code){
-$sql="SELECT quantite from produit where code=".$code;
-		$db = config::getConnexion();
-		try{
-		$quantite=$db->query($sql);
-		return $quantite;
-		}
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
-        }
-    }
- 
 
 
-function modifierquantite($quantite,$code){
 
-$sql="UPDATE produit SET quantite=".$quantite."WHERE code=".$code;
-$db = config::getConnexion();
-try{
-        $req=$db->prepare($sql);
-             $s=$req->execute();
-
-           
-        }
- catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
-}}
 }
 
 ?>
