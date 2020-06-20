@@ -1,19 +1,14 @@
-
 <?PHP
-class commande extends {
+class commande {
 	
 	
-	private $idCommande
-	private $statusCommande
-	private $quantite
-	private $dateCommande
+	private $cinUtilisateur ;
 
 
-	function __construct($idCommande,$statusCommande){
-		$this->idCommande=$idCommande;
-		$this->statusCommande=$statusCommande;
-		$this->quantite=$quantite
-		$this->dateCommande=$dateCommande
+	function __construct($cinUtilisateur){
+	
+
+		$this->cinUtilisateur=$cinUtilisateur;
 	}
 	
 	function getidCommande(){
@@ -22,29 +17,42 @@ class commande extends {
 	function getstatusCommande(){
 		return $this->statusCommande;
 	}
+	function getidProduit(){
+		return $this->idProduit;
+	}
 	function getquantite(){
 		return $this->quantite;
 	}
-	function getdate(){
-		return $this->dateCommande;
+	function getcinUtilisateur(){
+		return $this->cinUtilisateur;
 	}
+	function getprix(){
+		return $this->prix;
+	}
+	
 	
 
 	
 	
-	function setidEvent($idCommande){
+	function setidCommande($idCommande){
 		 $this->idCommande=$idCommande;
 	}
-	function setlibelleEvent($statusCommande){
+	function setStatusCommande($statusCommande){
 		$this->statusCommande=$statusCommande;
 	}
-	function setlibelleEvent($quantite){
-		$this->quantite=$quantite;
-	}
-	function setlibelleEvent($date){
-		$this->dateCommande=$dateCommande;
+	function setidProduit($idProduit){
+		$this->idProduit=$idProduit;
 	}
 	
+	function setQuantite($quantite){
+		$this->quantite=$quantite;
+	}
+	function setcinUtilisateur($cinUtilisateur){
+		$this->dateCommande=$cinUtilisateur;
+	}
+
+
+
 
 }
 

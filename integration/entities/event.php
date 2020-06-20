@@ -1,28 +1,28 @@
 <?PHP
-class evenement extends {
+class evenement{
 	private $idEvent;
 	private $libelleEvent;
-	private $desciptionEvent;
+	private $descriptionEvent;
 	private $nbParticipant;
 	private $adresseEvent;
 	private $dateEvent;
-	private $idPromotion;
-	private $idCategorieEvent;
-	private $cinUtilisateur;
+	private $libelleCategorieEvent;
+
+	
 
 
 
-	function __construct($idEvent,$libelleEvent,$desciptionEvent,$nbParticipant,$adresseEvent,$dateEvent,$idPromotion,$idCategorieEvent,$cinUtilisateur){
-		$this->idEvent=$idEvent;
+	function __construct($libelleEvent,$descriptionEvent,$nbParticipant,$adresseEvent,$dateEvent,$libelleCategorieEvent){
+	    $this->idEvent=null;
 		$this->libelleEvent=$libelleEvent;
 		$this->descriptionEvent=$descriptionEvent;
 		$this->nbParticipant=$nbParticipant;
 		$this->adresseEvent=$adresseEvent;
 		$this->dateEvent=$dateEvent;
-		$this->idPromotion=$idPromotion;
-		$this->idCategorieEvent=$idCategorieEvent;
-		$this->cinUtilisateur=$cinUtilisateur;	}
-
+		$this->libelleCategorieEvent=$libelleCategorieEvent;
+		
+	}
+		
 	
 	function getidEvent(){
 		return $this->idEvent;
@@ -36,25 +36,26 @@ class evenement extends {
 	function getnbParticipant(){
 		return $this->nbParticipant;
 	}
+	function getadresseEvent(){
+		return $this->adresseEvent;
+	}
 	function getdateEvent(){
 		return $this->dateEvent;
 	}
-	function getidPromotion(){
-		return $this->idPromotion;
-	}
-	function getidCategorieEvent(){
-		return $this->idCategorieEvent;
-	}
-	function getcinUtilisateur(){
-		return $this->cinUtilisateur;
-	}
+	function getidPromotion()
+	{return $this->idPromotion;}
+function getlibelleCategorieEvent()
+{return $this->libelleCategorieEvent;
+}
+function getcinUtilisateur()
+{return $this->cinUtilisateur;
+}
 	
-	
-
 
 function setidEvent($idEvent){
-		 $this->idEvent=$idEvent;
+		$this->idEvent=$idEvent;
 	}
+
 	function setlibelleEvent($libelleEvent){
 		$this->libelleEvent=$libelleEvent;
 	}
@@ -64,21 +65,15 @@ function setidEvent($idEvent){
 	function setnbParticipant($nbParticipant){
 		 $this->nbParticipant=$nbParticipant;
 	}
+	function setadresseEvent($adresseEvent){
+		 $this->adresseEvent=$adresseEvent;
+	}
 	function setdateEvent($dateEvent){
 		 $this->dateEvent=$dateEvent;
 	}
-	function setidPromotion($idPromotion){
-		 $this->idPromotion=$idPromotion;
-	}
-	function setidCategorieEvent($idCategorieEvent){
-		$this->idCategorieEvent=$idCategorieEvent;
-	}
-	function setcinUtilisateur($cinUtilisateur){
-		 $this->cinUtilisateur=$cinUtilisateur;
-	}
-	
-	
-	
-}
-
-?>
+	function setidPromotion($idPromotion)
+	{$this->idPromotion=$idPromotion;}
+function setlibelleCategorieEvent($libelleCategorieEvent)
+{$this->libelleCategorieEvent=$libelleCategorieEvent;
+}}
+ ?>

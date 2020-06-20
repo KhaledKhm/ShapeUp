@@ -1,13 +1,13 @@
 <?PHP
 class appreciation{
-	private $idappreciation;
-	private $typeAppreciation;
+	private $idAppreciation;
+	private $texteAppreciation;
 	private $noteAppreciation;
-	private $cinUtilisateur
+	private $cinUtilisateur;
 
-	function __construct($idappreciation, $typeAppreciation, $noteAppreciation, $cinUtilisateur){
-		$this->idappreciation=$idappreciation;
-		$this->typeAppreciation=$typeAppreciation;
+	function __construct($idAppreciation, $texteAppreciation, $noteAppreciation, $cinUtilisateur){
+		$this->idAppreciation=$idAppreciation;
+		$this->texteAppreciation=$texteAppreciation;
 		$this->noteAppreciation=$noteAppreciation;
 		$this->cinUtilisateur=$cinUtilisateur;
 	}
@@ -15,8 +15,8 @@ class appreciation{
 	function getIdAppreciation(){
 		return $this->idAppreciation;
 	}
-	function getTypeAppreciation(){
-		return $this->typeAppreciation;
+	function gettexteAppreciation(){
+		return $this->texteAppreciation;
 	}
 	function getNoteAppreciation(){
 		return $this->noteAppreciation;
@@ -30,8 +30,8 @@ class appreciation{
 		$this->idAppreciation=$idAppreciation;
 	}
 
-	function setTypeAppreciation($typeAppreciation){
-		$this->typeAppreciation=$typeAppreciation;
+	function settexteAppreciation($texteAppreciation){
+		$this->texteAppreciation=$texteAppreciation;
 	}
 	function setNoteAppreciation($noteAppreciation){
 		$this->noteAppreciation=$noteAppreciation;

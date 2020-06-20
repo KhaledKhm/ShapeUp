@@ -1,5 +1,5 @@
 <?PHP
-include "../config.php";
+include_once "../config.php";
 class produitC{
      function     afficherProduit ($produit){
 		echo "Code: ".$produit->getCode()."<br>";
@@ -71,8 +71,7 @@ $db = config::getConnexion();
 try{
 
         $req=$db->prepare($sql);
-
-$codeN=$produit->getCode();
+		$codeN=$produit->getCode();
         $libelleP=$produit->getLibelle();
         $quantite=$produit->getQuant();
         $prix=$produit->getPrix();
@@ -123,14 +122,13 @@ $req->bindValue(':img',$img);
         }	
 	}
 		
-	
+
 }
 
 
 
-
 class categorieC {
-      function     afficherCategorie ($categorie){
+      function afficherCategorie ($categorie){
 		echo "Identifiant: ".$categorie->getId()."<br>";
 		echo "Libelle: ".$categorie->getLibel()."<br>";
 		echo "Description: ".$categorie->getDesc()."<br>";
